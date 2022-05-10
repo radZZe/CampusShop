@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CampusShop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tag_line">Buy some products faster</string>
+    <string name="appName">Campus Shop</string>
+    <string name="welcome">Welcome</string>
+    <string name="email">Email</string>
+    <string name="sign_in">sign in</string>
+    <string name="sign_up">sign up</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="create_account">Create Account</string>
 </resources>

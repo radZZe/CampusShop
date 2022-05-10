@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standart_margin">18dp</dimen>
+    <dimen name="login_bg_height">300dp</dimen>
+    <dimen name="login_title_size">30sp</dimen>
+    <dimen name="tag_line_mt">10dp</dimen>
+    <dimen name="corner_raduis_content_login">30dp</dimen>
+    <dimen name="welcome_textSize">18sp</dimen>
+    <dimen name="email_mt">16dp</dimen>
+    <dimen name="email_ps">20dp</dimen>
+    <dimen name="pass_ps">20dp</dimen>
+</resources>
