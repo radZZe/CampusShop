@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInFragment"
+    tools:context=".screens.signin.SignInFragment"
     android:background="@color/white">
 
     <ImageView
@@ -125,6 +125,7 @@
             android:layout_marginTop="16dp"
             android:background="@null"
             android:hint="Password"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/pass_ps"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.677"
@@ -155,7 +156,7 @@
             app:layout_constraintEnd_toStartOf="@+id/input_password" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/create_account"
             android:layout_width="320dp"
             android:layout_height="61dp"
             android:layout_marginTop="48dp"
