@@ -1,4 +1,4 @@
-package com.mimoza_app.notes.campusshop.ui
+package com.mimoza_app.notes.campusshop.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

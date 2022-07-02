@@ -7,20 +7,31 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.mimoza_app.notes.campusshop.LoginFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_main"
+            app:destination="@id/main" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.mimoza_app.notes.campusshop.SignInFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_main"
+            app:destination="@id/main" />
     </fragment>
+    <fragment
+        android:id="@+id/main"
+        android:name="com.mimoza_app.notes.campusshop.screens.main"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

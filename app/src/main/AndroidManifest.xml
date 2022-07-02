@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusShop">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

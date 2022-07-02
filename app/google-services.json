@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "290182475136",
+    "project_id": "campusshop-8bbd7",
+    "storage_bucket": "campusshop-8bbd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290182475136:android:75d07dae246c1b4259a565",
+        "android_client_info": {
+          "package_name": "com.mimoza_app.notes.campusshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290182475136-3l95lmk0hphbj5j2nve206g6iaoqrlul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCzdgAtIRZrR4W5CPwvaSdJUdCE4G7s88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290182475136-3l95lmk0hphbj5j2nve206g6iaoqrlul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
