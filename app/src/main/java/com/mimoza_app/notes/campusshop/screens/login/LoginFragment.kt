@@ -49,5 +49,8 @@ class LoginFragment : Fragment() {
                 showToast("Введите логин и пороль")
             }
         }
+        mBinding.forgotPassword.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_forgotPassword2)
+        }
     }
 }

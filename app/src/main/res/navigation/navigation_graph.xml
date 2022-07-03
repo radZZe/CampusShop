@@ -15,7 +15,14 @@
             app:destination="@id/signInFragment" />
         <action
             android:id="@+id/action_loginFragment_to_main"
+<<<<<<< HEAD
             app:destination="@id/mainFragment" />
+=======
+            app:destination="@id/main" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPassword2"
+            app:destination="@id/forgotPassword2" />
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -33,6 +40,7 @@
         android:id="@+id/mainFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.main"
         android:label="fragment_main"
+<<<<<<< HEAD
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_main_to_profileFragment2"
@@ -64,5 +72,16 @@
         <action
             android:id="@+id/action_profileFragment2_to_chatsFragment2"
             app:destination="@id/chatsFragment" />
+=======
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/forgotPassword2"
+        android:name="com.mimoza_app.notes.campusshop.screens.forgot_password.ForgotPassword"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPassword2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
     </fragment>
 </navigation>
