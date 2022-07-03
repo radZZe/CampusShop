@@ -15,10 +15,14 @@
             app:destination="@id/signInFragment" />
         <action
             android:id="@+id/action_loginFragment_to_main"
+<<<<<<< HEAD
+            app:destination="@id/mainFragment" />
+=======
             app:destination="@id/main" />
         <action
             android:id="@+id/action_loginFragment_to_forgotPassword2"
             app:destination="@id/forgotPassword2" />
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -30,12 +34,45 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_signInFragment_to_main"
-            app:destination="@id/main" />
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/main"
-        android:name="com.mimoza_app.notes.campusshop.screens.main"
+        android:id="@+id/mainFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.main"
         android:label="fragment_main"
+<<<<<<< HEAD
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_main_to_chatsFragment2"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.ChatsFragment"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_chatsFragment2_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_chatsFragment2_to_main"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_main"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_chatsFragment2"
+            app:destination="@id/chatsFragment" />
+=======
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/forgotPassword2"
@@ -45,5 +82,6 @@
         <action
             android:id="@+id/action_forgotPassword2_to_loginFragment"
             app:destination="@id/loginFragment" />
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
     </fragment>
 </navigation>

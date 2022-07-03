@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.main.main">
+    tools:context=".screens.main.ChatsFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="MAIN"
+        android:gravity="center"
+        android:text="Chats"
         android:textColor="#000000"
         android:textSize="34sp" />
+
 </FrameLayout>

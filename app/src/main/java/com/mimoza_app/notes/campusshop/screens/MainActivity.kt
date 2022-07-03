@@ -5,8 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
+<<<<<<< HEAD
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+=======
 import com.google.android.material.internal.ContextUtils.getActivity
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.ActivityMainBinding
 import com.mimoza_app.notes.campusshop.screens.login.LoginFragment
@@ -25,6 +32,14 @@ class MainActivity : AppCompatActivity() { //jopa
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         navController = Navigation.findNavController(this,R.id.nav_host)
+<<<<<<< HEAD
+
+        mBinding.bottomNavMenu.setupWithNavController(navController) // Setup menu navigation
+
+        val navView: BottomNavigationView = mBinding.bottomNavMenu
+        NavigationUI.setupWithNavController(navView, navController)
+
+=======
         val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host);
         if (currentFragment != null) {
             if (currentFragment.equals(LoginFragment())) {
@@ -33,6 +48,7 @@ class MainActivity : AppCompatActivity() { //jopa
                 Log.v("jopa","Не работает")
             }
         }
+>>>>>>> 55454be333f6e267b319526d57d8a0d2d202fe71
 
     }
 }

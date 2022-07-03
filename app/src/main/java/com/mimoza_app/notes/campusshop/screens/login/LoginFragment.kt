@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.FragmentLoginBinding
 import com.mimoza_app.notes.campusshop.util.*
