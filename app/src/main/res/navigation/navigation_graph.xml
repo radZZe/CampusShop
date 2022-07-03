@@ -15,7 +15,7 @@
             app:destination="@id/signInFragment" />
         <action
             android:id="@+id/action_loginFragment_to_main"
-            app:destination="@id/main" />
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -27,11 +27,42 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_signInFragment_to_main"
-            app:destination="@id/main" />
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/main"
-        android:name="com.mimoza_app.notes.campusshop.screens.main"
+        android:id="@+id/mainFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_main_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_main_to_chatsFragment2"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.ChatsFragment"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_chatsFragment2_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_chatsFragment2_to_main"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_main"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_chatsFragment2"
+            app:destination="@id/chatsFragment" />
+    </fragment>
 </navigation>

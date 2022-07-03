@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.FragmentLoginBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentSignInBinding
@@ -31,6 +32,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun initialization() {
+
         mViewModel = ViewModelProvider(this)[SignInFragmentViewModel::class.java]
         mBinding.createAccount.setOnClickListener{
             val inputEmail = mBinding.inputEmail.text.toString()
@@ -45,7 +47,7 @@ class SignInFragment : Fragment() {
                 showToast("Введите логин и пороль")
             }
         }
+
+
     }
-
-
 }

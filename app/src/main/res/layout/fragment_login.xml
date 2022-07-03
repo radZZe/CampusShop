@@ -162,6 +162,7 @@
             android:layout_marginTop="44dp"
             android:text="@string/sign_in"
             app:cornerRadius="10dp"
+            android:backgroundTint="@color/main_blue"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
