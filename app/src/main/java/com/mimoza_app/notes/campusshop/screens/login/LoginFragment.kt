@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
                 EMAIL = inputEmail
                 PASSWORD = inputPassword
                 mViewModel.initDatabase(LOGIN) {
-                    APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_main)
+                    APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_mainFragment2)
                 }
             }else{
                 showToast("Введите логин и пороль")
