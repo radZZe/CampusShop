@@ -1,21 +1,21 @@
 package com.mimoza_app.notes.campusshop.screens
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.FragmentManager
+import android.view.View
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.ActivityMainBinding
-import com.mimoza_app.notes.campusshop.screens.login.LoginFragment
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
-import com.mimoza_app.notes.campusshop.util.showToast
+
 
 class MainActivity : AppCompatActivity() { //jopa
 
@@ -35,14 +35,31 @@ class MainActivity : AppCompatActivity() { //jopa
         val navView: BottomNavigationView = mBinding.bottomNavMenu
         NavigationUI.setupWithNavController(navView, navController)
 
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host);
-        if (currentFragment != null) {
-            if (currentFragment.equals(LoginFragment())) {
-                Log.v("jopa","Работает")
-            }else{
-                Log.v("jopa","Не работает")
+
+        navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener {
+            override fun onDestinationChanged(
+                controller: NavController,
+                destination: NavDestination, @Nullable arguments: Bundle?
+            ) {
+                nav_changed_listener()
             }
-        }
+        })
 
     }
+
+     fun nav_changed_listener(){
+         val currentFragment = navController.currentDestination
+         val fragment_login = navController.findDestination(R.id.loginFragment)
+         val fragment_forgot_password = navController.findDestination(R.id.forgotPassword2)
+         val fragment_signUp = navController.findDestination(R.id.signInFragment)
+         if (currentFragment != null) {
+             if(currentFragment == fragment_login || currentFragment == fragment_forgot_password
+                 || currentFragment == fragment_signUp)  {
+                 mBinding.bottomNavMenu.visibility = View.GONE
+             }else{
+                 mBinding.bottomNavMenu.visibility = View.VISIBLE
+             }
+         }
+     }
+
 }
