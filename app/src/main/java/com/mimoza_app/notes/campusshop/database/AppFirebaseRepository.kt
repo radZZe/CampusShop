@@ -1,7 +1,10 @@
 package com.mimoza_app.notes.campusshop.database
 
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.mimoza_app.notes.campusshop.util.*
+
 
 class AppFirebaseRepository:DatabaseRepository {
     private val mAuth = FirebaseAuth.getInstance()
@@ -19,6 +22,17 @@ class AppFirebaseRepository:DatabaseRepository {
                 .addOnSuccessListener { onSuccess() }
                 .addOnFailureListener { onFail(it.message.toString()) }
         }
+    }
+
+    fun resetPassword(email:String,onSuccess: () -> Unit){
+        mAuth.sendPasswordResetEmail(email)
+            .addOnCompleteListener(object : OnCompleteListener<Void?> {
+                override fun onComplete(task: Task<Void?>) {
+                    if (task.isSuccessful()) {
+                        onSuccess()
+                    }
+                }
+            })
     }
 
 }

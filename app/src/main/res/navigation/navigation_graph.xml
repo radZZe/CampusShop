@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_main"
             app:destination="@id/main" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPassword2"
+            app:destination="@id/forgotPassword2" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -34,4 +37,13 @@
         android:name="com.mimoza_app.notes.campusshop.screens.main"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/forgotPassword2"
+        android:name="com.mimoza_app.notes.campusshop.screens.forgot_password.ForgotPassword"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPassword2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
