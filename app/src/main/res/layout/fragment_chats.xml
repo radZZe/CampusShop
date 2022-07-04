@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.main.ChatsFragment">
+    tools:context=".screens.main.chat.ChatsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Chats"
-        android:textColor="#000000"
-        android:textSize="34sp" />
+        tools:listitem="@layout/chat_item" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatsFragment"
-        android:name="com.mimoza_app.notes.campusshop.screens.main.ChatsFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.chat.ChatsFragment"
         android:label="fragment_chats"
         tools:layout="@layout/fragment_chats" >
         <action
