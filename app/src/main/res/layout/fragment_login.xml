@@ -124,7 +124,7 @@
             android:layout_margin="@dimen/standart_margin"
             android:layout_marginTop="16dp"
             android:background="@null"
-            android:hint="Password"
+            android:hint="@string/password"
             android:paddingStart="@dimen/pass_ps"
             android:password="true"
             app:layout_constraintEnd_toEndOf="parent"
