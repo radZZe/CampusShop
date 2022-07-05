@@ -1,9 +1,9 @@
-package com.mimoza_app.notes.campusshop.screens.main.mainscreen.recycler_view
+package com.mimoza_app.notes.campusshop.screens.main.mainscreen
 
 import androidx.recyclerview.widget.DiffUtil
 import com.mimoza_app.notes.campusshop.models.ShopItem
 
-class ShopItemDiffCallback : DiffUtil.ItemCallback<ShopItem>() {
+class MainItemDiffCallback : DiffUtil.ItemCallback<ShopItem>() {
 
     override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
         return oldItem.id == newItem.id

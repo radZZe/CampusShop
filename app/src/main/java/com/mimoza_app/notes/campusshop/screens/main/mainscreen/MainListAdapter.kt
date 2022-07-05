@@ -1,4 +1,4 @@
-package com.mimoza_app.notes.campusshop.screens.main.mainscreen.recycler_view
+package com.mimoza_app.notes.campusshop.screens.main.mainscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.models.ShopItem
 
-class ShopListAdapter: ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallback()) {
+class MainListAdapter: ListAdapter<ShopItem, MainItemViewHolder>(MainItemDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.shop_item_card, parent, false)
-        return ShopItemViewHolder(view)
+        return MainItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ShopItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainItemViewHolder, position: Int) {
         val shopItem = getItem(position)
         holder.tvTitle.text = shopItem.name
         holder.tvPrice.text = shopItem.price.toString()

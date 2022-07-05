@@ -6,14 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mimoza_app.notes.campusshop.R
-import com.mimoza_app.notes.campusshop.databinding.ActivityMainBinding
-import com.mimoza_app.notes.campusshop.databinding.FragmentLoginBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentMainBinding
-import com.mimoza_app.notes.campusshop.screens.MainActivity
-import com.mimoza_app.notes.campusshop.screens.main.mainscreen.recycler_view.ShopListAdapter
+import com.mimoza_app.notes.campusshop.screens.main.mainscreen.MainListAdapter
 
 
 class main : Fragment() {
@@ -37,9 +31,9 @@ class main : Fragment() {
     private fun setupRecyclerView() {
         val rvShopList = mBinding.rvShopList
         with(rvShopList) {
-            val shopListAdapter = ShopListAdapter()
-            adapter = shopListAdapter
-            recycledViewPool.setMaxRecycledViews(ShopListAdapter.VIEW_TYPE, ShopListAdapter.MAX_POOL_SIZE)
+            val mainListAdapter = MainListAdapter()
+            adapter = mainListAdapter
+            recycledViewPool.setMaxRecycledViews(MainListAdapter.VIEW_TYPE, MainListAdapter.MAX_POOL_SIZE)
         }
         mBinding.rvShopList.layoutManager = GridLayoutManager(activity, 2)
 
