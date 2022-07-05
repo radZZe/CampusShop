@@ -17,7 +17,7 @@ class ShopListAdapter: ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCal
         val shopItem = getItem(position)
         holder.tvTitle.text = shopItem.name
         holder.tvPrice.text = shopItem.price.toString()
-        holder.tvKorpus.text = shopItem.korpus.toString()
+        holder.tvKorpus.text = shopItem.building.toString()
         holder.ivPicture.setImageResource(shopItem.picture)
     }
 

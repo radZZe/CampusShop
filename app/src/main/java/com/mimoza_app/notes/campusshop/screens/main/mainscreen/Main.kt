@@ -42,7 +42,7 @@ class main : Fragment() {
             recycledViewPool.setMaxRecycledViews(ShopListAdapter.VIEW_TYPE, ShopListAdapter.MAX_POOL_SIZE)
         }
         mBinding.rvShopList.layoutManager = GridLayoutManager(activity, 2)
-        TODO("Необходимо будет дописать логику взаимодействия с карточками товаров при помощи кликов")
+
     }
 
 
