@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
-        mBinding.signUpBtn.setOnClickListener{
+        mBinding.btnSignUp.setOnClickListener{
             APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_signInFragment)
         }
         mBinding.signInBtn.setOnClickListener{

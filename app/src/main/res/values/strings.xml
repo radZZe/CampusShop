@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">Campus Shop</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="price_placeholder">Цена:</string>
-    <string name="korpus_placeholder">Корпус:</string>
+    <string name="building_placeholder">Корпус:</string>
     <string name="search">Search</string>
-
+    <string name="archive_items">Архив</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tag_line">Buy things faster</string>
     <string name="appName">Campus Shop</string>
@@ -16,10 +15,15 @@
     <string name="create_account">Create Account</string>
     <string name="card_shop_item_title_example">Title</string>
     <string name="price_example_placeholder">100</string>
-    <string name="korpus_example">6.1</string>
+    <string name="building_example">6.1</string>
     <string name="password">Password</string>
     <string name="sign_up_placeholder">Sign Up</string>
     <string name="send_message">Отправить сообщение</string>
     <string name="password_reanimation_message">Для восстановления пороля введите свой email на который зарегистрирован аккаунт</string>
     <string name="password_reanimation">Восстановление пороля</string>
+    <string name="email_example">example@gmail.com</string>
+    <string name="username_example">Данила Раздобаров</string>
+    <string name="active_items">Активные объявления</string>
+    <string name="exit">Выйти</string>
+    <string name="shop_item_card_title">Заголовок карточки товара</string>
 </resources>

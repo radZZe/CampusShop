@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/card_view"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -41,19 +41,19 @@
             android:text="example@gmail.com"
             android:textColor="#000000"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/card_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/title_cart_chat_imput"
+            android:id="@+id/title_cart_chat_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
-            android:text="Заголовок карточки товара"
+            android:text="@string/shop_item_card_title"
             android:textColor="#000000"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/card_view"
             app:layout_constraintTop_toBottomOf="@+id/email_chat_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

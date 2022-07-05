@@ -140,7 +140,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
-            android:background="#9F9F9F"
+            android:background="@color/grey"
             app:layout_constraintEnd_toEndOf="@id/input_password"
             app:layout_constraintStart_toStartOf="@id/input_password"
             app:layout_constraintTop_toBottomOf="@id/input_password" />
@@ -169,7 +169,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <Button
-            android:id="@+id/signUpBtn"
+            android:id="@+id/btnSignUp"
             android:layout_width="320dp"
             android:layout_height="61dp"
             android:layout_marginTop="8dp"
@@ -182,15 +182,15 @@
             app:layout_constraintTop_toBottomOf="@+id/signInBtn"/>
 
         <TextView
-            android:id="@+id/forgotPassword"
+            android:id="@+id/forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="@string/forgot_password"
-            app:layout_constraintEnd_toEndOf="@+id/signUpBtn"
+            app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
             app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="@+id/signUpBtn"
-            app:layout_constraintTop_toBottomOf="@+id/signUpBtn"
+            app:layout_constraintStart_toStartOf="@+id/btnSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
             android:fontFamily="@font/montserrat_alternates"/>
 
 
