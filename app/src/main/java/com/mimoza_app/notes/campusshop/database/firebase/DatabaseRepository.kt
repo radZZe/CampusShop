@@ -1,4 +1,4 @@
-package com.mimoza_app.notes.campusshop.database
+package com.mimoza_app.notes.campusshop.database.firebase
 
 import androidx.lifecycle.LiveData
 

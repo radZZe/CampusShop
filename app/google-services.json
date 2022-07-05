@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "290182475136",
+    "firebase_url": "https://campusshop-8bbd7-default-rtdb.firebaseio.com",
     "project_id": "campusshop-8bbd7",
     "storage_bucket": "campusshop-8bbd7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:290182475136:android:75d07dae246c1b4259a565",
+        "mobilesdk_app_id": "1:290182475136:android:f77884ed1d5266d559a565",
         "android_client_info": {
           "package_name": "com.mimoza_app.notes.campusshop"
         }

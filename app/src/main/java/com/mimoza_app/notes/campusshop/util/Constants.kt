@@ -2,7 +2,7 @@ package com.mimoza_app.notes.campusshop.util
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.mimoza_app.notes.campusshop.database.DatabaseRepository
+import com.mimoza_app.notes.campusshop.database.firebase.DatabaseRepository
 import com.mimoza_app.notes.campusshop.screens.MainActivity
 
 lateinit var APP_ACTIVITY:MainActivity
@@ -14,3 +14,9 @@ lateinit var CURRENT_ID:String
 lateinit var REF_DATABASE: DatabaseReference
 const val LOGIN = "LOGIN"
 const val SIGNUP = "SIGNUP"
+const val KEY_COLLECTION_USERS = "users"
+const val KEY_EMAIL = "email"
+const val KEY_PASSWORD = "password"
+const val KEY_PREFERENCE_NAME = "fragmentChatPreference"
+const val KEY_IS_SIGNED_IN = "isSignedIn"
+const val KEY_USER_ID = "userId"

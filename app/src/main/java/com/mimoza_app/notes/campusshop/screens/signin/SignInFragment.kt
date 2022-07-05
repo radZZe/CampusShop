@@ -6,11 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mimoza_app.notes.campusshop.R
-import com.mimoza_app.notes.campusshop.databinding.FragmentLoginBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentSignInBinding
-import com.mimoza_app.notes.campusshop.screens.login.LoginFragmentViewModel
 import com.mimoza_app.notes.campusshop.util.*
 
 
@@ -19,6 +15,7 @@ class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val mBinding get() = _binding!!
     private lateinit var mViewModel: SignInFragmentViewModel
+    private lateinit var preferenceManager:PreferenceManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,22 +29,38 @@ class SignInFragment : Fragment() {
     }
 
     private fun initialization() {
-
+        preferenceManager = PreferenceManager()
+        preferenceManager.PreferenceManager(APP_ACTIVITY)
         mViewModel = ViewModelProvider(this)[SignInFragmentViewModel::class.java]
         mBinding.createAccount.setOnClickListener{
-            val inputEmail = mBinding.inputEmail.text.toString()
-            val inputPassword = mBinding.inputPassword.text.toString()
-            if(inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
-                EMAIL = inputEmail
-                PASSWORD = inputPassword
-                mViewModel.initDatabase(SIGNUP) {
-                    APP_ACTIVITY.navController.navigate(R.id.action_signInFragment_to_main)
-                }
-            }else{
-                showToast("Введите логин и пороль")
-            }
+            signUp()
         }
 
 
+    }
+
+    private fun signUp() {
+        val inputEmail = mBinding.inputEmail.text.toString()
+        val inputPassword = mBinding.inputPassword.text.toString()
+        val inputRepPass = mBinding.repPassInput.text.toString()
+        if(isValidSignUp(inputEmail,inputPassword,inputRepPass)){
+            mViewModel.signUp(inputEmail,inputPassword,preferenceManager)
+        }
+    }
+
+    private fun isValidSignUp(email: String, pass: String, repPass: String): Boolean {
+        if (email.isNotEmpty() && pass.isNotEmpty()) {
+            EMAIL = email
+            PASSWORD = pass
+            if (PASSWORD == repPass) {
+                return true
+            } else {
+                showToast("Пороли не совпадают")
+                return false
+            }
+        } else {
+            showToast("Введите логин и пороль")
+            return false
+        }
     }
 }
