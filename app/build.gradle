@@ -13,7 +13,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,6 +39,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.6'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.0'
     def fragment_version = "1.4.1"
     def nav_version = "2.4.2"
 
@@ -55,6 +57,11 @@ dependencies {
 
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
