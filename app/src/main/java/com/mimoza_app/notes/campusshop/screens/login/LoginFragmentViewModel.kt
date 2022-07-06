@@ -30,6 +30,8 @@ class LoginFragmentViewModel(application: Application) : AndroidViewModel(applic
                     manager.putBoolean(KEY_IS_SIGNED_IN,true)
                     manager.putString(KEY_USER_ID,documentSnapshot.id)
                     manager.putString(KEY_EMAIL, documentSnapshot.getString(KEY_EMAIL).toString())
+                    manager.putString(KEY_NAME,documentSnapshot.getString(KEY_NAME).toString())
+                    manager.putString(KEY_SURNAME,documentSnapshot.getString(KEY_SURNAME).toString())
                     APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_mainFragment2)
                 }else{
                     showToast("Ошибка входа")

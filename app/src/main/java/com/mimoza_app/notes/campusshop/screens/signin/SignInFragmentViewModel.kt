@@ -16,11 +16,14 @@ class SignInFragmentViewModel(application: Application) : AndroidViewModel(appli
         })
     }
 
-    fun signUp(email:String,pass:String,manager: PreferenceManager) {
+    fun signUp(email:String,pass:String,manager: PreferenceManager,name:String,surname:String,image:String) {
         val database = FirebaseFirestore.getInstance()
         val user = hashMapOf<String,Any>()
         user.put(KEY_EMAIL,email)
         user.put(KEY_PASSWORD,pass)
+        user.put(KEY_NAME,name)
+        user.put(KEY_SURNAME,surname)
+        user.put(KEY_IMAGE,image)
         database.collection(KEY_COLLECTION_USERS)
             .add(user)
             .addOnSuccessListener {
@@ -28,6 +31,9 @@ class SignInFragmentViewModel(application: Application) : AndroidViewModel(appli
                 manager.putString(KEY_USER_ID,it.id)
                 manager.putString(KEY_EMAIL,email)
                 manager.putString(KEY_PASSWORD,pass)
+                manager.putString(KEY_NAME,name)
+                manager.putString(KEY_SURNAME,surname)
+                manager.putString(KEY_IMAGE,image)
                 APP_ACTIVITY.navController.navigate(R.id.action_signInFragment_to_main)
             }
             .addOnFailureListener {
