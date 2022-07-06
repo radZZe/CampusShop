@@ -56,7 +56,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    fun loadUserDetails(){
+    private fun loadUserDetails(){
         mBinding.userEmailField.text = preferenceManager.getString(KEY_EMAIL)
         mBinding.userNameField.text = "${preferenceManager.getString(KEY_NAME)?.capitalize()} " +
                 "${preferenceManager.getString(KEY_SURNAME)?.capitalize()}"
