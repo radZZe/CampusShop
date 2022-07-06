@@ -2,9 +2,9 @@ package com.mimoza_app.notes.campusshop.models
 
 data class ShopItem(val name: String,
                     val price: Int,
-                    val description: String,
+                    val description: String = "",
                     val building: Float,
-                    val type: String,
+                    val category: String,
                     val id: Int,
                     val picture: Int)
 {

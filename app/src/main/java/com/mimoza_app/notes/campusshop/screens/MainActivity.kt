@@ -45,23 +45,38 @@ class MainActivity : AppCompatActivity() { //jopa
         val fragment_login = navController.findDestination(R.id.loginFragment)
         val fragment_forgot_password = navController.findDestination(R.id.forgotPassword2)
         val fragment_signUp = navController.findDestination(R.id.signInFragment)
+        val fragment_add_inShop = navController.findDestination(R.id.addItemInShopFragment)
+        val fragment_edit_profile = navController.findDestination(R.id.editProfileFragment)
 
         navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener {
             override fun onDestinationChanged(
                 controller: NavController,
                 destination: NavDestination, @Nullable arguments: Bundle?
             ) {
-                nav_changed_listener(fragment_login,fragment_forgot_password,fragment_signUp)
+                nav_changed_listener(
+                    fragment_login,
+                    fragment_forgot_password,
+                    fragment_signUp,
+                    fragment_add_inShop,
+                    fragment_edit_profile
+                )
             }
         })
 
     }
 
-     fun nav_changed_listener(login:NavDestination?,forgot_pass:NavDestination?,signUp:NavDestination?){
+     fun nav_changed_listener(login:NavDestination?,
+                              forgot_pass:NavDestination?,
+                              signUp:NavDestination?,
+                              add:NavDestination?,
+                              edit: NavDestination?) {
          val currentFragment = navController.currentDestination
          if (currentFragment != null) {
-             if(currentFragment == login || currentFragment == forgot_pass
-                 || currentFragment == signUp)  {
+             if(currentFragment == login ||
+                 currentFragment == forgot_pass ||
+                 currentFragment == signUp ||
+                 currentFragment == add ||
+                 currentFragment == edit)  {
                  mBinding.bottomNavMenu.visibility = View.GONE
              }else{
                  mBinding.bottomNavMenu.visibility = View.VISIBLE

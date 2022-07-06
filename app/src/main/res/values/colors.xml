@@ -3,6 +3,7 @@
     <color name="main_blue">#2d8de7</color>
     <color name="light_grey">#EAEAEA</color>
     <color name="light_main_blue">#48A7FF</color>
+    <color name="dark_main_blue">#003668</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
