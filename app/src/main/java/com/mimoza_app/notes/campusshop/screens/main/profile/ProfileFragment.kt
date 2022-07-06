@@ -11,16 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.mimoza_app.notes.campusshop.R
-<<<<<<< HEAD
 import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.databinding.FragmentMainBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentProfileBinding
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
 import com.mimoza_app.notes.campusshop.util.showToast
-=======
-import com.mimoza_app.notes.campusshop.databinding.FragmentProfileBinding
 import com.mimoza_app.notes.campusshop.util.*
->>>>>>> 5231ea0ce307ac6ddf6f07ef8fe8ab8fd631ae05
+
 
 class ProfileFragment : Fragment() {
 
@@ -59,8 +56,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-<<<<<<< HEAD
-=======
     fun loadUserDetails(){
         mBinding.userEmailField.text = preferenceManager.getString(KEY_EMAIL)
         mBinding.userNameField.text = "${preferenceManager.getString(KEY_NAME)?.capitalize()} " +
@@ -69,5 +64,4 @@ class ProfileFragment : Fragment() {
         val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
         mBinding.userAvatar.setImageBitmap(bitmap)
     }
->>>>>>> 5231ea0ce307ac6ddf6f07ef8fe8ab8fd631ae05
 }
