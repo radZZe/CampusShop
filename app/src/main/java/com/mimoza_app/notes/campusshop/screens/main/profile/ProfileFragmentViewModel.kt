@@ -2,7 +2,7 @@ package com.mimoza_app.notes.campusshop.screens.main.profile
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.mimoza_app.notes.campusshop.database.AppFirebaseRepository
+import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.util.REPOSITORY
 import com.mimoza_app.notes.campusshop.util.showToast
 
@@ -16,4 +16,5 @@ class ProfileFragmentViewModel(application: Application) : AndroidViewModel(appl
             showToast(it)
         })
     }
+
 }

@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
 import com.mimoza_app.notes.campusshop.R
+import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.databinding.FragmentMainBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentProfileBinding
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
+import com.mimoza_app.notes.campusshop.util.showToast
 
 class ProfileFragment : Fragment() {
 
@@ -35,5 +38,13 @@ class ProfileFragment : Fragment() {
         mBinding.btnAdd.setOnClickListener{
             APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_addItemInShopFragment)
         }
+        mBinding.btnSettings.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_editProfileFragment)
+        }
+        mBinding.btnExit.setOnClickListener {
+            showToast("Succesfuly signed out")
+            APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_loginFragment)
+        }
     }
+
 }

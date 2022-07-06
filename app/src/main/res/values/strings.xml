@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Campus Shop</string>
-    <string name="price_placeholder">Цена:</string>
+    <string name="price_placeholder">Price:</string>
     <string name="building_placeholder">Корпус:</string>
     <string name="search">Search</string>
     <string name="archive_items">Архив</string>
@@ -26,4 +26,26 @@
     <string name="active_items">Активные объявления</string>
     <string name="exit">Выйти</string>
     <string name="shop_item_card_title">Заголовок карточки товара</string>
+    <string name="category">Category</string>
+    <string name="add_item_name">Add name for your item</string>
+    <string name="add_item_price">Add price for your item</string>
+    <string name="title">Title:</string>
+    <string name="add_item_description">Description:</string>
+    <string name="add_description_for_your_item">Add description for your item</string>
+    <string name="add_building_number">Add building number</string>
+    <string name="new_avatar">New avatar</string>
+    <string name="enter_new_name">Enter new name</string>
+    <string name="enter_new_surname">Enter new surname</string>
+    <string name="enter_new_email_address">Enter new Email address</string>
+    <string name="enter_new_building_number">Enter new building number</string>
+    <string name="add_photo">Add Photo</string>
+
+    <string-array name="categories">
+        <item>Food</item>
+        <item>Services</item>
+        <item>Clothes</item>
+        <item>Smoking</item>
+        <item>Things</item>
+    </string-array>
+
 </resources>

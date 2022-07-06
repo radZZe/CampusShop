@@ -37,40 +37,26 @@
         android:id="@+id/mainFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_main_to_profileFragment2"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_main_to_chatsFragment2"
-            app:destination="@id/chatsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/chatsFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.chat.ChatsFragment"
         android:label="fragment_chats"
-        tools:layout="@layout/fragment_chats" >
-        <action
-            android:id="@+id/action_chatsFragment2_to_profileFragment2"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_chatsFragment2_to_main"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment2_to_main"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_profileFragment2_to_chatsFragment2"
-            app:destination="@id/chatsFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_addItemInShopFragment"
             app:destination="@id/addItemInShopFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPassword2"
@@ -88,6 +74,14 @@
         tools:layout="@layout/fragment_add_item_in_shop" >
         <action
             android:id="@+id/action_addItemInShopFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.profile.EditProfileFragment"
+        android:label="EditProfileFragment" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
 </navigation>
