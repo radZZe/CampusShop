@@ -29,6 +29,7 @@ class SignInFragment : Fragment() {
     private lateinit var mViewModel: SignInFragmentViewModel
     private lateinit var preferenceManager:PreferenceManager
     private lateinit var encodedImage:String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

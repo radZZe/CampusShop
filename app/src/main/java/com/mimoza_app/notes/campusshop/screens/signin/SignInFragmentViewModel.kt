@@ -8,6 +8,7 @@ import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.util.*
 
 class SignInFragmentViewModel(application: Application) : AndroidViewModel(application) {
+
     private val mContext = application
     fun initDatabase(type_connect:String,onSucces: () -> Unit){
         REPOSITORY = AppFirebaseRepository()
