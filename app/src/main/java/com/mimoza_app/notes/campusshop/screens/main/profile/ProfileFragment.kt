@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.databinding.FragmentMainBinding
@@ -38,6 +42,7 @@ class ProfileFragment : Fragment() {
         super.onStart()
         initialization()
         loadUserDetails()
+        getToken()
     }
 
     private fun initialization() {
@@ -51,8 +56,7 @@ class ProfileFragment : Fragment() {
             APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
         mBinding.btnExit.setOnClickListener {
-            showToast("Succesfuly signed out")
-            APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_loginFragment)
+            signOut()
         }
     }
 
@@ -63,5 +67,36 @@ class ProfileFragment : Fragment() {
         val bytes = Base64.decode(preferenceManager.getString(KEY_IMAGE),Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
         mBinding.userAvatar.setImageBitmap(bitmap)
+    }
+
+    private fun updateToken(token:String){
+        val database = FirebaseFirestore.getInstance()
+        val documentReference = preferenceManager.getString(
+            KEY_USER_ID)?.let { database.collection(KEY_COLLECTION_USERS).document(it) }
+        documentReference?.update(KEY_FCM_TOKEN,token)
+            ?.addOnFailureListener { showToast("Unable to update token") }
+    }
+
+    private fun getToken(){
+        FirebaseMessaging.getInstance().token.addOnSuccessListener(this::updateToken)
+    }
+
+    private fun signOut(){
+        val database = FirebaseFirestore.getInstance()
+        val documentReference = preferenceManager.getString(KEY_USER_ID)?.let {
+            database.collection(KEY_COLLECTION_USERS).document(
+                it
+            )
+        }
+        val updates = hashMapOf<String,Any>()
+        updates.put(KEY_FCM_TOKEN,FieldValue.delete())
+        documentReference?.update(updates)
+            ?.addOnSuccessListener {
+                preferenceManager.clear()
+                APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_loginFragment)
+            }
+            ?.addOnFailureListener {
+                showToast("Unable to sign out")
+            }
     }
 }
