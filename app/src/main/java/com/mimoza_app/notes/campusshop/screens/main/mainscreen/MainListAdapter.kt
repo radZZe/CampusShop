@@ -18,7 +18,9 @@ class MainListAdapter: ListAdapter<ShopItem, MainItemViewHolder>(MainItemDiffCal
         holder.tvTitle.text = shopItem.name
         holder.tvPrice.text = shopItem.price.toString()
         holder.tvKorpus.text = shopItem.building.toString()
-        holder.ivPicture.setImageResource(shopItem.picture)
+        holder.ivPicture.setImageResource(shopItem.picture.toInt())
+    // не уверен что будет работать
+    // неообходимо протестировать после внедрения добавления объявлений
     }
 
     companion object {

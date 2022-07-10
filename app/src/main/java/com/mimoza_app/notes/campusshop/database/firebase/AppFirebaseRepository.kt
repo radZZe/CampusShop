@@ -1,12 +1,15 @@
 package com.mimoza_app.notes.campusshop.database.firebase
 
+import androidx.lifecycle.LiveData
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.mimoza_app.notes.campusshop.models.ShopItem
 import com.mimoza_app.notes.campusshop.util.*
 
 
 class AppFirebaseRepository: DatabaseRepository {
+
     private val mAuth = FirebaseAuth.getInstance()
     override fun signOut() {
         mAuth.signOut()
