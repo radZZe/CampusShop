@@ -5,21 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.FragmentChatsBinding
 import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.util.*
 
-class ChatsFragment : Fragment() {
+class ChatsFragment : Fragment(),ChatListener {
 
     private var _binding: FragmentChatsBinding? = null
     private val mBinding get() = _binding!!
-    private lateinit var preferenceManager: PreferenceManager
     private lateinit var rvChat:RecyclerView
     private lateinit var  chatAdapter:ChatAdapter
+    private lateinit var mViewModel:ChatFragmentViewModel
+    private lateinit var preferenceManager: PreferenceManager
 
 
     override fun onCreateView(
@@ -36,22 +40,23 @@ class ChatsFragment : Fragment() {
     }
 
     private fun initialization() {
-        preferenceManager = PreferenceManager()
-        preferenceManager.PreferenceManager(APP_ACTIVITY)
         getUsers()
         mBinding.backpressed.setOnClickListener{
             showToast("TODO onBackPressed")
         }
     }
 
-    private fun getUsers(){
+
+    fun getUsers() {
+        preferenceManager = PreferenceManager()
+        preferenceManager.PreferenceManager(APP_ACTIVITY)
         val database = FirebaseFirestore.getInstance()
         database.collection(KEY_COLLECTION_USERS).get()
             .addOnCompleteListener {
                 val currentUserId = preferenceManager.getString(KEY_USER_ID)
                 if (it.isSuccessful && it.result != null){
                     val users = arrayListOf<User>()
-                    for(queryDocumentSnapshot:QueryDocumentSnapshot in it.result){
+                    for(queryDocumentSnapshot: QueryDocumentSnapshot in it.result){
                         if(currentUserId.equals(queryDocumentSnapshot.id)){
                             continue
                         }
@@ -60,22 +65,25 @@ class ChatsFragment : Fragment() {
                         user.email = queryDocumentSnapshot.getString(KEY_EMAIL).toString()
                         user.image = queryDocumentSnapshot.getString(KEY_IMAGE).toString()
                         user.token = queryDocumentSnapshot.getString(KEY_FCM_TOKEN).toString()
+                        user.surname = queryDocumentSnapshot.getString(KEY_SURNAME).toString()
                         users.add(user)
                     }
                     if(users.size > 0){
-                        setupRecyclerView()
+                        chatAdapter = ChatAdapter(users,this)
+                        mBinding.rvChat.adapter = chatAdapter
+                    }else{
+                        showToast("Ошибка загрузки")
                     }
+                }else{
+                    showToast("Ошибка загрузки")
                 }
             }
     }
 
-    private fun setupRecyclerView(){
-        rvChat = mBinding.rvChat
-        with(rvChat){
-            chatAdapter = ChatAdapter()
-            adapter = chatAdapter
-        }
+    override fun onUserClicked(user: User) {
+        val bundle = Bundle()
+        bundle.putSerializable(KEY_USER,user)
+        APP_ACTIVITY.navController.navigate(R.id.action_chatsFragment_to_userChat,bundle)
     }
-
 
 }

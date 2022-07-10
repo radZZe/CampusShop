@@ -6,21 +6,21 @@
     android:layout_height="match_parent">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/roundedImageView"
+        android:id="@+id/message_user_avatar"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="3dp"
         android:background="@drawable/avatar_bg"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/message_text"
+        app:layout_constraintEnd_toStartOf="@+id/message_text"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:riv_oval="true" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/message_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -35,15 +35,16 @@
 "
         android:textColor="#fff"
         android:textSize="@dimen/_12sdp"
-        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintStart_toEndOf="@+id/message_user_avatar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/message_dateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date time"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/message_text"
+        app:layout_constraintTop_toBottomOf="@+id/message_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

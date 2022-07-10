@@ -42,7 +42,11 @@
         android:id="@+id/chatsFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.chat.ChatsFragment"
         android:label="fragment_chats"
-        tools:layout="@layout/fragment_chats" />
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_chatsFragment_to_userChat"
+            app:destination="@id/userChat" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ProfileFragment"
@@ -83,5 +87,14 @@
         <action
             android:id="@+id/action_editProfileFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userChat"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.chat.UserChat"
+        android:label="fragment_user_chat"
+        tools:layout="@layout/fragment_user_chat" >
+        <action
+            android:id="@+id/action_userChat_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
     </fragment>
 </navigation>

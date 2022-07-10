@@ -7,4 +7,6 @@ data class User(
     var image:String = "",
     var email:String = "",
     var token:String = "",
+    var id:Int = 0,
+    var surname:String =""
 ):Serializable
