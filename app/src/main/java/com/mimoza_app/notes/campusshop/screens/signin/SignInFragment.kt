@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.FragmentSignInBinding
 import com.mimoza_app.notes.campusshop.util.*
 import java.io.ByteArrayOutputStream
@@ -29,6 +30,7 @@ class SignInFragment : Fragment() {
     private lateinit var mViewModel: SignInFragmentViewModel
     private lateinit var preferenceManager:PreferenceManager
     private lateinit var encodedImage:String
+    lateinit var image:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +49,18 @@ class SignInFragment : Fragment() {
         preferenceManager.PreferenceManager(APP_ACTIVITY)
         mViewModel = ViewModelProvider(this)[SignInFragmentViewModel::class.java]
         mBinding.createAccount.setOnClickListener{
-            signUp()
+            val inputEmail = mBinding.inputEmail.text.toString()
+            val inputPassword = mBinding.inputPassword.text.toString()
+            val inputRepPass = mBinding.repPassInput.text.toString()
+            val inputName = mBinding.inputName.text.toString()
+            val inputSurname = mBinding.inputSurname.text.toString()
+            EMAIL = inputEmail
+            PASSWORD = inputPassword
+            if(isValidSignUp(inputEmail,inputPassword,inputRepPass,inputName,inputSurname)){
+                mViewModel.initDatabase(SIGNUP,preferenceManager,inputName,inputSurname,image) {
+
+                }
+            }
         }
         mBinding.avatarImage.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -58,17 +71,17 @@ class SignInFragment : Fragment() {
 
     }
 
-    private fun signUp() {
-        val inputEmail = mBinding.inputEmail.text.toString()
-        val inputPassword = mBinding.inputPassword.text.toString()
-        val inputRepPass = mBinding.repPassInput.text.toString()
-        val inputName = mBinding.inputName.text.toString()
-        val inputSurname = mBinding.inputSurname.text.toString()
-        val image = encodedImage
-        if(isValidSignUp(inputEmail,inputPassword,inputRepPass,inputName,inputSurname)){
-            mViewModel.signUp(inputEmail,inputPassword,preferenceManager,inputName,inputSurname,image)
-        }
-    }
+//    private fun signUp() {
+//        val inputEmail = mBinding.inputEmail.text.toString()
+//        val inputPassword = mBinding.inputPassword.text.toString()
+//        val inputRepPass = mBinding.repPassInput.text.toString()
+//        val inputName = mBinding.inputName.text.toString()
+//        val inputSurname = mBinding.inputSurname.text.toString()
+//        val image = encodedImage
+//        if(isValidSignUp(inputEmail,inputPassword,inputRepPass,inputName,inputSurname)){
+//            mViewModel.signUp(inputEmail,inputPassword,preferenceManager,inputName,inputSurname,image)
+//        }
+//    }
 
     private fun isValidSignUp(email: String, pass: String, repPass: String,name:String,surname:String): Boolean {
         if (email.isNotEmpty() && pass.isNotEmpty() && name.isNotEmpty() && surname.isNotEmpty()) {
@@ -77,7 +90,7 @@ class SignInFragment : Fragment() {
             if (PASSWORD == repPass) {
                 return true
             } else {
-                showToast("Пороли не совпадают")
+                showToast("Пароли не совпадают")
                 return false
             }
         } else {
@@ -112,10 +125,31 @@ class SignInFragment : Fragment() {
                     mBinding.avatarImage.setImageBitmap(bitmap)
                     mBinding.addImage.visibility = View.GONE
                     encodedImage = encodedImage(bitmap).toString()
+                    image = encodedImage
                 }catch(e: FileNotFoundException){
                         e.printStackTrace()
                 }
             }
         }
     }
+
+
+
+//    private fun initialization() {
+//
+//        mViewModel = ViewModelProvider(this)[SignInFragmentViewModel::class.java]
+//        mBinding.createAccount.setOnClickListener{
+//            val inputEmail = mBinding.inputEmail.text.toString()
+//            val inputPassword = mBinding.inputPassword.text.toString()
+//            if(inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
+//                EMAIL = inputEmail
+//                PASSWORD = inputPassword
+//                mViewModel.initDatabase(SIGNUP) {
+//                    APP_ACTIVITY.navController.navigate(R.id.action_signInFragment_to_main)
+//                }
+//            }else{
+//                showToast("Введите логин и пороль")
+//            }
+//        }
+//    }
 }

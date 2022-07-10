@@ -2,26 +2,29 @@ package com.mimoza_app.notes.campusshop.screens.signin
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.util.*
 
 class SignInFragmentViewModel(application: Application) : AndroidViewModel(application) {
-
+    private val mAuth = FirebaseAuth.getInstance()
     private val mContext = application
-    fun initDatabase(type_connect:String,onSucces: () -> Unit){
+    fun initDatabase(type_connect:String,manager:PreferenceManager,name:String,surname:String,image:String,onSucces: () -> Unit){
         REPOSITORY = AppFirebaseRepository()
-        REPOSITORY.connectToDatabase(type_connect,{onSucces()},{
+        REPOSITORY.connectToDatabase(type_connect,{
+            signUp(EMAIL, PASSWORD,manager,name,surname,image)
+            onSucces() },{
             showToast(it)
         })
     }
 
     fun signUp(email:String,pass:String,manager: PreferenceManager,name:String,surname:String,image:String) {
+        val uid = mAuth.currentUser!!.uid
         val database = FirebaseFirestore.getInstance()
         val user = hashMapOf<String,Any>()
-        user.put(KEY_EMAIL,email)
-        user.put(KEY_PASSWORD,pass)
+        user.put(KEY_UID,uid)
         user.put(KEY_NAME,name)
         user.put(KEY_SURNAME,surname)
         user.put(KEY_IMAGE,image)
@@ -40,5 +43,6 @@ class SignInFragmentViewModel(application: Application) : AndroidViewModel(appli
             .addOnFailureListener {
                 showToast(it.message)
             }
+
     }
 }

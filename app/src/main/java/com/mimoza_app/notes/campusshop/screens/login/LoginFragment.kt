@@ -31,6 +31,7 @@ class LoginFragment : Fragment() {
         initialization()
     }
 
+
     private fun initialization() {
         preferenceManager = PreferenceManager()
         preferenceManager.PreferenceManager(APP_ACTIVITY)
@@ -39,28 +40,48 @@ class LoginFragment : Fragment() {
             APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_signInFragment)
         }
         mBinding.signInBtn.setOnClickListener{
-            login()
+            val inputEmail = mBinding.inputEmail.text.toString()
+            val inputPassword = mBinding.inputPassword.text.toString()
+            if(inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
+                EMAIL = inputEmail
+                PASSWORD = inputPassword
+                mViewModel.initDatabase(LOGIN,preferenceManager) {
+                }
+            }else{
+                showToast("Введите логин и пороль")
+            }
         }
         mBinding.forgotPassword.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_forgotPassword2)
         }
     }
-
-    fun login(){
-        val email = mBinding.inputEmail.text.toString()
-        val pass = mBinding.inputPassword.text.toString()
-        if(isValidLogin(email,pass)){
-            mViewModel.login(email,pass,preferenceManager)
-        }
-    }
-
-    private fun isValidLogin(email:String,pass:String):Boolean{
-        if(email.isNotEmpty() && pass.isNotEmpty()){
-            return true
-        }else{
-            showToast("Некорректный ввод данных")
-            return false
-        }
-    }
-
 }
+
+//    private fun initialization() {
+//        mViewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
+//        mBinding.btnSignUp.setOnClickListener{
+//            APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_signInFragment)
+//        }
+//        mBinding.signInBtn.setOnClickListener{
+//            login()
+//        }
+
+//    }
+//
+//    fun login(){
+//        val email = mBinding.inputEmail.text.toString()
+//        val pass = mBinding.inputPassword.text.toString()
+//        if(isValidLogin(email,pass)){
+//            mViewModel.login(email,pass,preferenceManager)
+//        }
+//    }
+//
+//    private fun isValidLogin(email:String,pass:String):Boolean{
+//        if(email.isNotEmpty() && pass.isNotEmpty()){
+//            return true
+//        }else{
+//            showToast("Некорректный ввод данных")
+//            return false
+//        }
+//    }
+

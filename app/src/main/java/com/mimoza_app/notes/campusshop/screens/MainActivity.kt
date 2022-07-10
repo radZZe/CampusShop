@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() { //jopa
         val fragment_signUp = navController.findDestination(R.id.signInFragment)
         val fragment_add_inShop = navController.findDestination(R.id.addItemInShopFragment)
         val fragment_edit_profile = navController.findDestination(R.id.editProfileFragment)
+        val fragmet_user_chat = navController.findDestination(R.id.userChat)
 
         navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener {
             override fun onDestinationChanged(
@@ -58,7 +59,8 @@ class MainActivity : AppCompatActivity() { //jopa
                     fragment_forgot_password,
                     fragment_signUp,
                     fragment_add_inShop,
-                    fragment_edit_profile
+                    fragment_edit_profile,
+                    fragmet_user_chat
                 )
             }
         })
@@ -69,14 +71,16 @@ class MainActivity : AppCompatActivity() { //jopa
                               forgot_pass:NavDestination?,
                               signUp:NavDestination?,
                               add:NavDestination?,
-                              edit: NavDestination?) {
+                              edit: NavDestination?,
+                              chat:NavDestination? ) {
          val currentFragment = navController.currentDestination
          if (currentFragment != null) {
              if(currentFragment == login ||
                  currentFragment == forgot_pass ||
                  currentFragment == signUp ||
                  currentFragment == add ||
-                 currentFragment == edit)  {
+                 currentFragment == edit ||
+                 currentFragment == chat)  {
                  mBinding.bottomNavMenu.visibility = View.GONE
              }else{
                  mBinding.bottomNavMenu.visibility = View.VISIBLE
