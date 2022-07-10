@@ -37,7 +37,7 @@
     <string name="enter_new_name">Enter new name</string>
     <string name="enter_new_surname">Enter new surname</string>
     <string name="enter_new_email_address">Enter new Email address</string>
-    <string name="enter_new_building_number">Enter new building number</string>
+    <string name="enter_new_password">Enter new password</string>
     <string name="add_photo">Add Photo</string>
     <string name="add">Add</string>
     <string name="finish">Finish</string>

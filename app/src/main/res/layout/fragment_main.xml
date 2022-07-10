@@ -23,7 +23,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/light_main_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,18 +37,18 @@
 
             <EditText
                 android:id="@+id/searchPad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_width="116dp"
+                android:layout_height="35dp"
                 android:background="@null"
                 android:ems="10"
                 android:hint="@string/search"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
+                android:textSize="22dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

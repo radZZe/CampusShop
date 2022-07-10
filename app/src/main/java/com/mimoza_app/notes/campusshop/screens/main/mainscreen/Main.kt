@@ -35,7 +35,7 @@ class main : Fragment() {
             adapter = mainListAdapter
             recycledViewPool.setMaxRecycledViews(MainListAdapter.VIEW_TYPE, MainListAdapter.MAX_POOL_SIZE)
         }
-        mBinding.rvShopList.layoutManager = GridLayoutManager(activity, 2)
+            mBinding.rvShopList.layoutManager = GridLayoutManager(activity, 2)
 
     }
 
