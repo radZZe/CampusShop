@@ -36,5 +36,7 @@ const val KEY_USER ="user"
 const val KEY_COLLECTION_CHAT = "chat"
 const val SENDER_ID = "sender_id"
 const val RECEIVER_ID = "receiver_id"
+const val KEY_MESSAGE = "message"
+const val KEY_TIMESTAMP = "timestamp"
 const val SENT = 1
 const val RECEIVED = 0

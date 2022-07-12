@@ -21,12 +21,12 @@ class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>
 
     var chatMessages:List<ChatMessage>
     var senderID:String
-    var receiverImage:String
+//    var receiverImage:String
 
     constructor(chatMessages:List<ChatMessage>,senderId:String,receiverImage:String) : super(){
         this.chatMessages = chatMessages
         this.senderID = senderId
-        this.receiverImage = receiverImage
+//        this.receiverImage = receiverImage
     }
 
 
@@ -34,8 +34,10 @@ class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>
     class UserChatViewHolder(view: View) :RecyclerView.ViewHolder(view){
         val message:TextView = view.findViewById(R.id.message_text)
         val dateTime:TextView = view.findViewById(R.id.message_dateTime)
-        val imageReceiver:ImageView = view.findViewById(R.id.message_user_avatar)
+//        val imageReceiver:ImageView = view.findViewById(R.id.message_user_avatar)
     }
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserChatViewHolder {
@@ -57,7 +59,7 @@ class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>
         }else{
             holder.message.text = chatMessages.get(position).message
             holder.dateTime.text = chatMessages.get(position).dateTime
-            holder.imageReceiver.setImageBitmap(getUserImage(receiverImage))
+//            holder.imageReceiver.setImageBitmap(getUserImage(receiverImage))
         }
     }
 
@@ -73,10 +75,10 @@ class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>
         }
     }
 
-    private fun getUserImage(encodedImage:String): Bitmap {
-        val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
-        return BitmapFactory.decodeByteArray(bytes,0,bytes.size)
-    }
+//    private fun getUserImage(encodedImage:String): Bitmap {
+//        val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+//        return BitmapFactory.decodeByteArray(bytes,0,bytes.size)
+//    }
 
 
 }
