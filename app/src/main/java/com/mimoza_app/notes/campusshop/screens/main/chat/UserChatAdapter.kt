@@ -18,49 +18,67 @@ import com.mimoza_app.notes.campusshop.util.SENT
 class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder> {
 
 
+    var chatMessages: List<ChatMessage>
+    var senderID: String
+    var receiverImage: String
 
-    var chatMessages:List<ChatMessage>
-    var senderID:String
-//    var receiverImage:String
-
-    constructor(chatMessages:List<ChatMessage>,senderId:String,receiverImage:String) : super(){
+    constructor(
+        chatMessages: List<ChatMessage>,
+        senderId: String,
+        receiverImage: String
+    ) : super() {
         this.chatMessages = chatMessages
         this.senderID = senderId
-//        this.receiverImage = receiverImage
+        this.receiverImage = receiverImage
     }
 
 
+     open class UserChatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    class UserChatViewHolder(view: View) :RecyclerView.ViewHolder(view){
-        val message:TextView = view.findViewById(R.id.message_text)
-        val dateTime:TextView = view.findViewById(R.id.message_dateTime)
-//        val imageReceiver:ImageView = view.findViewById(R.id.message_user_avatar)
+         private fun getUserImage(encodedImage:String): Bitmap {
+             val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+             return BitmapFactory.decodeByteArray(bytes,0,bytes.size)
+         }
+         class ReceivedChatViewHolder(view:View): UserChatViewHolder(view){
+             val message: TextView = view.findViewById(R.id.message_text)
+             val dateTime: TextView = view.findViewById(R.id.message_dateTime)
+             val imageReceiver: ImageView = view.findViewById(R.id.message_user_avatar)
+
+         }
+
+         class SentChatViewHolder(view:View):UserChatViewHolder(view){
+             val message: TextView = view.findViewById(R.id.message_text)
+             val dateTime: TextView = view.findViewById(R.id.message_dateTime)
+         }
+
+         fun bind(type:Int,view:View,position: Int,chatMessages: List<ChatMessage>,receiverImage: String){
+             if(type == SENT){
+                 SentChatViewHolder(view).message.text = chatMessages.get(position).message
+                 SentChatViewHolder(view).dateTime.text = chatMessages.get(position).dateTime
+             }else{
+                 ReceivedChatViewHolder(view).message.text = chatMessages.get(position).message
+                 ReceivedChatViewHolder(view).dateTime.text = chatMessages.get(position).dateTime
+                 ReceivedChatViewHolder(view).imageReceiver.setImageBitmap(getUserImage(receiverImage))
+             }
+         }
+
     }
-
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserChatViewHolder {
-        if(viewType == SENT){
+        if (viewType == SENT) {
             val layout = R.layout.item_container_sent_message
-            val view = LayoutInflater.from(parent.context).inflate(layout,parent,false)
-            return UserChatAdapter.UserChatViewHolder(view)
-        }else{
+            val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
+            return UserChatAdapter.UserChatViewHolder.SentChatViewHolder(view)
+        } else {
             val layout = R.layout.item_container_received_message
-            val view = LayoutInflater.from(parent.context).inflate(layout,parent,false)
-            return UserChatAdapter.UserChatViewHolder(view)
+            val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
+            return UserChatAdapter.UserChatViewHolder.ReceivedChatViewHolder(view)
         }
     }
 
     override fun onBindViewHolder(holder: UserChatViewHolder, position: Int) {
-        if(holder.itemViewType == SENT){
-            holder.message.text = chatMessages.get(position).message
-            holder.dateTime.text = chatMessages.get(position).dateTime
-        }else{
-            holder.message.text = chatMessages.get(position).message
-            holder.dateTime.text = chatMessages.get(position).dateTime
-//            holder.imageReceiver.setImageBitmap(getUserImage(receiverImage))
-        }
+        holder.bind(holder.itemViewType,holder.itemView,position,chatMessages,receiverImage)
     }
 
     override fun getItemCount(): Int {
@@ -68,17 +86,13 @@ class UserChatAdapter : RecyclerView.Adapter<UserChatAdapter.UserChatViewHolder>
     }
 
     override fun getItemViewType(position: Int): Int {
-        if(senderID ==chatMessages.get(position).senderID){
+        if (senderID == chatMessages.get(position).senderID) {
             return SENT
-        }else{
+        } else {
             return RECEIVED
         }
     }
 
-//    private fun getUserImage(encodedImage:String): Bitmap {
-//        val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
-//        return BitmapFactory.decodeByteArray(bytes,0,bytes.size)
-//    }
 
 
 }
