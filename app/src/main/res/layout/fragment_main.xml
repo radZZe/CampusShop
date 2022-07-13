@@ -10,20 +10,17 @@
         android:id="@+id/rv_shop_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="12dp"
-        app:layout_constraintTop_toBottomOf="@id/card_view"
+        android:layout_marginTop="36dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_view"
         app:spanCount="2"
-        tools:layout_editor_absoluteY="37dp"
-        tools:listitem="@layout/shop_item_card"
-        android:layout_marginTop="40dp"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/shop_item_card"></androidx.recyclerview.widget.RecyclerView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:elevation="20dp"
         app:cardBackgroundColor="@color/light_main_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,15 +34,16 @@
 
             <EditText
                 android:id="@+id/searchPad"
-                android:layout_width="116dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:background="@null"
                 android:ems="10"
                 android:hint="@string/search"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="22dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.12"

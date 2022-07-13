@@ -190,6 +190,31 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <Button
+                android:id="@+id/btn_map"
+                android:layout_width="258dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/white"
+                android:outlineProvider="none"
+                android:text="@string/map"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="@+id/btn_archive_items"
+                app:layout_constraintTop_toBottomOf="@+id/btn_archive_items" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_map"
+                app:layout_constraintStart_toStartOf="@+id/btn_map"
+                app:layout_constraintTop_toBottomOf="@+id/btn_map" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
