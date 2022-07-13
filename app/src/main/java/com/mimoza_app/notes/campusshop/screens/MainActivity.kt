@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() { //jopa
         val fragment_add_inShop = navController.findDestination(R.id.addItemInShopFragment)
         val fragment_edit_profile = navController.findDestination(R.id.editProfileFragment)
         val fragmet_user_chat = navController.findDestination(R.id.userChat)
+        val fragment_active_ads = navController.findDestination(R.id.activeAdsFragment)
+        val fragment_archive_ads = navController.findDestination(R.id.archiveAdsFragment)
 
         navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener {
             override fun onDestinationChanged(
@@ -60,19 +62,25 @@ class MainActivity : AppCompatActivity() { //jopa
                     fragment_signUp,
                     fragment_add_inShop,
                     fragment_edit_profile,
-                    fragmet_user_chat
+                    fragmet_user_chat,
+                    fragment_active_ads,
+                    fragment_archive_ads
                 )
             }
         })
 
     }
 
-     fun nav_changed_listener(login:NavDestination?,
-                              forgot_pass:NavDestination?,
-                              signUp:NavDestination?,
-                              add:NavDestination?,
-                              edit: NavDestination?,
-                              chat:NavDestination? ) {
+     fun nav_changed_listener(
+         login: NavDestination?,
+         forgot_pass: NavDestination?,
+         signUp: NavDestination?,
+         add: NavDestination?,
+         edit: NavDestination?,
+         chat: NavDestination?,
+         active: NavDestination?,
+         archive: NavDestination?
+     ) {
          val currentFragment = navController.currentDestination
          if (currentFragment != null) {
              if(currentFragment == login ||
@@ -80,8 +88,10 @@ class MainActivity : AppCompatActivity() { //jopa
                  currentFragment == signUp ||
                  currentFragment == add ||
                  currentFragment == edit ||
-                 currentFragment == chat)  {
-                 mBinding.bottomNavMenu.visibility = View.GONE
+                 currentFragment == chat ||
+                 currentFragment == active ||
+                 currentFragment == archive)  {
+                     mBinding.bottomNavMenu.visibility = View.GONE
              }else{
                  mBinding.bottomNavMenu.visibility = View.VISIBLE
              }

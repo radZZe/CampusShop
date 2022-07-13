@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Campus Shop</string>
     <string name="price_placeholder">Price:</string>
-    <string name="building_placeholder">Корпус:</string>
+    <string name="building_placeholder">Building:</string>
     <string name="search">Search</string>
     <string name="archive_items">Архив</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -43,6 +43,8 @@
     <string name="finish">Finish</string>
     <string name="add_new_item">Add new item</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="map">Map</string>
+    <string name="active_ads">Active Ads</string>
 
     <string-array name="categories">
         <item>Food</item>

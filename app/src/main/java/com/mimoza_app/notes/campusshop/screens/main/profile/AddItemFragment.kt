@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mimoza_app.notes.campusshop.R
+import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.databinding.FragmentAddItemBinding
 import com.mimoza_app.notes.campusshop.screens.signin.SignInFragmentViewModel
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
@@ -66,7 +67,7 @@ class AddItemFragment : Fragment() {
 
         mBinding.btnFinish.setOnClickListener {
             addItem()
-            APP_ACTIVITY.navController.navigate(R.id.action_addItemInShopFragment_to_profileFragment2)
+            APP_ACTIVITY.navController.navigate(R.id.action_addItemInShopFragment_to_profileFragment)
         }
 
     }

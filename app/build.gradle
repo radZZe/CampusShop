@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.2.0'
     def fragment_version = "1.4.1"
     def nav_version = "2.4.2"
+    def groupie_version = "1.0.0"
 
     // Java language implementation
     implementation("androidx.navigation:navigation-fragment:$nav_version")
@@ -57,7 +58,6 @@ dependencies {
 
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
-
 
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
