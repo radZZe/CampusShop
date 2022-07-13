@@ -2,6 +2,7 @@ package com.mimoza_app.notes.campusshop.screens.main.chat
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Base64
 import androidx.fragment.app.Fragment
@@ -9,16 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.text.capitalize
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
+import com.google.firebase.firestore.EventListener
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.FragmentChatsBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentUserChatBinding
 import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.User
-import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
-import com.mimoza_app.notes.campusshop.util.KEY_IMAGE
-import com.mimoza_app.notes.campusshop.util.KEY_USER
-import com.mimoza_app.notes.campusshop.util.PreferenceManager
+import com.mimoza_app.notes.campusshop.util.*
+import java.util.*
 
 
 class UserChat : Fragment() {
@@ -26,7 +26,7 @@ class UserChat : Fragment() {
 
     private var _binding: FragmentUserChatBinding? = null
     private val mBinding get() = _binding!!
-    private lateinit var chatMessages :List<ChatMessage>
+    private lateinit var chatMessages :ArrayList<ChatMessage>
     private lateinit var preferenceManager:PreferenceManager
     private lateinit var receiverUser:User
     private lateinit var database:FirebaseFirestore
@@ -47,19 +47,34 @@ class UserChat : Fragment() {
         initialization()
     }
 
+    private fun sendMessage(){
+        val message = hashMapOf<String,Any>()
+        message.put(SENDER_ID, preferenceManager.getString(KEY_USER_ID)!!)
+        message.put(RECEIVER_ID,receiverUser.id)
+        message.put(KEY_MESSAGE,mBinding.typeMessageField.text.toString())
+        message.put(KEY_TIMESTAMP,Date())
+        database.collection(KEY_COLLECTION_CHAT)
+            .add(message)
+        mBinding.typeMessageField.setText(null)
+    }
+
     private fun initialization() {
         preferenceManager = PreferenceManager()
         preferenceManager.PreferenceManager(APP_ACTIVITY)
         chatMessages = arrayListOf<ChatMessage>()
-        senderId = preferenceManager.getString(KEY_USER)!!
+        senderId = preferenceManager.getString(KEY_USER_ID)!!
         receiverUser = arguments?.get(KEY_USER) as User
         userChatAdpater = UserChatAdapter(chatMessages,senderId,receiverUser.image)
         database = FirebaseFirestore.getInstance()
+        listenMessage()
         val bytes =Base64.decode(receiverUser.image,Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
         mBinding.rvUserChat.adapter = userChatAdpater
         mBinding.userAvatar.setImageBitmap(bitmap)
         mBinding.userNameSurnameField.setText("${receiverUser.name.capitalize()} ${receiverUser.surname.capitalize()}")
+        mBinding.sendBtn.setOnClickListener{
+            sendMessage()
+        }
 
     }
 
@@ -67,6 +82,79 @@ class UserChat : Fragment() {
     private fun getBitmapFromEncodedString(encodedImage:String): Bitmap {
         val bytes = Base64.decode(encodedImage,Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(bytes,0,bytes.size)
+    }
+
+    private fun getReadableDateTime(date:Date):String{
+        return SimpleDateFormat("MMMM dd, yyyy - hh:mm a",Locale.getDefault()).format(date)
+    }
+
+    private fun listenMessage(){
+        database.collection(KEY_COLLECTION_CHAT)
+            .whereEqualTo(SENDER_ID,preferenceManager.getString(KEY_USER_ID).toString())
+            .whereEqualTo(RECEIVER_ID,receiverUser.id)
+            .addSnapshotListener { value, error ->
+                if(error != null){
+                    return@addSnapshotListener
+                }
+                if(value != null){
+                    var count = chatMessages.size
+                    for( documentChange in value.documentChanges){
+                        if(documentChange.type == DocumentChange.Type.ADDED){
+                            var chatMessage = ChatMessage()
+                            chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
+                            chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
+                            chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
+                            chatMessage.dateTime = getReadableDateTime(
+                                documentChange.document.getDate(
+                                    KEY_TIMESTAMP)!!
+                            )
+                            chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
+                            chatMessages.add(chatMessage)
+                        }
+                    }
+                    val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
+                    Collections.sort(chatMessages,chatComparator)
+                    if(count == 0){
+                        userChatAdpater.notifyDataSetChanged()
+                    }else{
+                        userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
+                        mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
+                    }
+                }
+            }
+        database.collection(KEY_COLLECTION_CHAT)
+            .whereEqualTo(SENDER_ID,receiverUser.id)
+            .whereEqualTo(RECEIVER_ID,preferenceManager.getString(KEY_USER_ID).toString())
+            .addSnapshotListener { value, error ->
+                if(error != null){
+                    return@addSnapshotListener
+                }
+                if(value != null){
+                    var count = chatMessages.size
+                    for( documentChange in value.documentChanges){
+                        if(documentChange.type == DocumentChange.Type.ADDED){
+                            var chatMessage = ChatMessage()
+                            chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
+                            chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
+                            chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
+                            chatMessage.dateTime = getReadableDateTime(
+                                documentChange.document.getDate(
+                                    KEY_TIMESTAMP)!!
+                            )
+                            chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
+                            chatMessages.add(chatMessage)
+                        }
+                    }
+                    val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
+                    Collections.sort(chatMessages,chatComparator)
+                    if(count == 0){
+                        userChatAdpater.notifyDataSetChanged()
+                    }else{
+                        userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
+                        mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
+                    }
+                }
+            }
     }
 
 }
