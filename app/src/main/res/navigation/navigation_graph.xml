@@ -61,6 +61,12 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_activeAdsFragment"
+            app:destination="@id/activeAdsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_archiveAdsFragment"
+            app:destination="@id/archiveAdsFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPassword2"
@@ -77,7 +83,7 @@
         android:label="fragment_add_item_in_shop"
         tools:layout="@layout/fragment_add_item" >
         <action
-            android:id="@+id/action_addItemInShopFragment_to_profileFragment2"
+            android:id="@+id/action_addItemInShopFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
@@ -97,4 +103,13 @@
             android:id="@+id/action_userChat_to_chatsFragment"
             app:destination="@id/chatsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/archiveAdsFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ArchiveAdsFragment"
+        android:label="ArchiveAdsFragment" />
+    <fragment
+        android:id="@+id/activeAdsFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ActiveAdsFragment"
+        android:label="fragment_archive_ads"
+        tools:layout="@layout/fragment_archive_ads" />
 </navigation>

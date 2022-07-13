@@ -58,6 +58,12 @@ class ProfileFragment : Fragment() {
         mBinding.btnExit.setOnClickListener {
             signOut()
         }
+        mBinding.btnActiveItems.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_activeAdsFragment)
+        }
+        mBinding.btnArchiveItems.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_profileFragment_to_archiveAdsFragment)
+        }
     }
 
     private fun loadUserDetails(){

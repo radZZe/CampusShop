@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="240dp"
     android:layout_width="180dp"
+    android:layout_marginStart="12dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
-    app:cardElevation="10dp"
+    app:cardElevation="15dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginBottom="12dp">
+    android:layout_marginBottom="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
@@ -18,6 +19,7 @@
 
         <ImageView
             android:id="@+id/cardPhoto"
+            android:scaleType="centerCrop"
             android:layout_width="215dp"
             android:layout_height="189dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
+            android:inputType="text"
             android:text="@string/price_example_placeholder"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:inputType="text"
             android:text="@string/building_example"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

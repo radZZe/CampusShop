@@ -29,7 +29,7 @@ class AddItemFragmentViewModel(application: Application) : AndroidViewModel(appl
 
         ) {
         val database = FirebaseFirestore.getInstance()
-        //val currentUser = Firebase.auth.currentUser?.uid.toString()
+        val currentUser = Firebase.auth.currentUser?.uid.toString()
         val shopItem = hashMapOf<String, Any>()
         shopItem[KEY_NAME] = name
         shopItem[KEY_VALUE] = price
