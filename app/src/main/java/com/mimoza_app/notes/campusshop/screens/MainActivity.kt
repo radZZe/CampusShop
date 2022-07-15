@@ -72,7 +72,10 @@ class MainActivity : AppCompatActivity() { //jopa
 
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1433583a7fb301ede1ac8e04e03f713a0bdfce26
      fun nav_changed_listener(
          login: NavDestination?,
          forgot_pass: NavDestination?,
