@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() { //jopa
         APP_ACTIVITY = this
         navController = Navigation.findNavController(this,R.id.nav_host)
 
+
         val database = Firebase.database
         val myRef = database.getReference("message")
 
@@ -70,6 +71,7 @@ class MainActivity : AppCompatActivity() { //jopa
         })
 
     }
+
 
      fun nav_changed_listener(
          login: NavDestination?,

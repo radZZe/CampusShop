@@ -49,12 +49,16 @@ class UserChat : Fragment() {
 
     private fun sendMessage(){
         val message = hashMapOf<String,Any>()
+        message.put(KEY_IS_CHECKED,false)
         message.put(SENDER_ID, preferenceManager.getString(KEY_USER_ID)!!)
         message.put(RECEIVER_ID,receiverUser.id)
         message.put(KEY_MESSAGE,mBinding.typeMessageField.text.toString())
         message.put(KEY_TIMESTAMP,Date())
-        database.collection(KEY_COLLECTION_CHAT)
-            .add(message)
+        database.collection(KEY_COLLECTION_USERS)
+            .whereEqualTo(KEY_UID,preferenceManager.getString(KEY_UID))
+            .get().addOnCompleteListener {
+                it.getResult().documents.get(0).reference.collection(KEY_COLLECTION_CHAT).add(message)
+            }
         mBinding.typeMessageField.setText(null)
     }
 
@@ -75,6 +79,9 @@ class UserChat : Fragment() {
         mBinding.sendBtn.setOnClickListener{
             sendMessage()
         }
+        mBinding.backButton.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_userChat_to_chatsFragment)
+        }
 
     }
 
@@ -89,72 +96,86 @@ class UserChat : Fragment() {
     }
 
     private fun listenMessage(){
-        database.collection(KEY_COLLECTION_CHAT)
-            .whereEqualTo(SENDER_ID,preferenceManager.getString(KEY_USER_ID).toString())
-            .whereEqualTo(RECEIVER_ID,receiverUser.id)
-            .addSnapshotListener { value, error ->
-                if(error != null){
-                    return@addSnapshotListener
-                }
-                if(value != null){
-                    var count = chatMessages.size
-                    for( documentChange in value.documentChanges){
-                        if(documentChange.type == DocumentChange.Type.ADDED){
-                            var chatMessage = ChatMessage()
-                            chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
-                            chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
-                            chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
-                            chatMessage.dateTime = getReadableDateTime(
-                                documentChange.document.getDate(
-                                    KEY_TIMESTAMP)!!
-                            )
-                            chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
-                            chatMessages.add(chatMessage)
+        database.collection(KEY_COLLECTION_USERS)
+            .whereEqualTo(KEY_UID,preferenceManager.getString(KEY_UID))
+            .get().addOnCompleteListener {
+                it.getResult().documents.get(0).reference.collection(KEY_COLLECTION_CHAT)
+                    .whereEqualTo(SENDER_ID,preferenceManager.getString(KEY_USER_ID).toString())
+                    .whereEqualTo(RECEIVER_ID,receiverUser.id)
+                    .addSnapshotListener{ value, error ->
+                        if(error != null){
+                            return@addSnapshotListener
+                        }
+                        if(value != null){
+                            var count = chatMessages.size
+                            for( documentChange in value.documentChanges){
+                                if(documentChange.type == DocumentChange.Type.ADDED){
+                                    var chatMessage = ChatMessage()
+                                    chatMessage.isChecked = false
+                                    chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
+                                    chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
+                                    chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
+                                    chatMessage.dateTime = getReadableDateTime(
+                                        documentChange.document.getDate(
+                                            KEY_TIMESTAMP)!!
+                                    )
+                                    chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
+                                    chatMessages.add(chatMessage)
+                                }
+                            }
+                            val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
+                            Collections.sort(chatMessages,chatComparator)
+                            if(count == 0){
+                                userChatAdpater.notifyDataSetChanged()
+                            }else{
+                                userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
+                                mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
+                            }
                         }
                     }
-                    val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
-                    Collections.sort(chatMessages,chatComparator)
-                    if(count == 0){
-                        userChatAdpater.notifyDataSetChanged()
-                    }else{
-                        userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
-                        mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
-                    }
-                }
             }
-        database.collection(KEY_COLLECTION_CHAT)
-            .whereEqualTo(SENDER_ID,receiverUser.id)
-            .whereEqualTo(RECEIVER_ID,preferenceManager.getString(KEY_USER_ID).toString())
-            .addSnapshotListener { value, error ->
-                if(error != null){
-                    return@addSnapshotListener
-                }
-                if(value != null){
-                    var count = chatMessages.size
-                    for( documentChange in value.documentChanges){
-                        if(documentChange.type == DocumentChange.Type.ADDED){
-                            var chatMessage = ChatMessage()
-                            chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
-                            chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
-                            chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
-                            chatMessage.dateTime = getReadableDateTime(
-                                documentChange.document.getDate(
-                                    KEY_TIMESTAMP)!!
-                            )
-                            chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
-                            chatMessages.add(chatMessage)
+        database.collection(KEY_COLLECTION_USERS)
+            .document(receiverUser.id)
+            .get()
+            .addOnCompleteListener {
+                it.getResult().reference.collection(KEY_COLLECTION_CHAT)
+                    .whereEqualTo(SENDER_ID,receiverUser.id)
+                    .whereEqualTo(RECEIVER_ID,preferenceManager.getString(KEY_USER_ID).toString())
+                    .addSnapshotListener{ value, error ->
+                        if(error != null){
+                            return@addSnapshotListener
+                        }
+                        if(value != null){
+                            var count = chatMessages.size
+                            value.documents.forEach{
+                                it.reference.update(KEY_IS_CHECKED,true)
+                            }
+                            for( documentChange in value.documentChanges){
+                                if(documentChange.type == DocumentChange.Type.ADDED){
+                                    var chatMessage = ChatMessage()
+                                    chatMessage.senderID = documentChange.document.getString(SENDER_ID)!!
+                                    chatMessage.recevierId = documentChange.document.getString(RECEIVER_ID)!!
+                                    chatMessage.message = documentChange.document.getString(KEY_MESSAGE)!!
+                                    chatMessage.dateTime = getReadableDateTime(
+                                        documentChange.document.getDate(
+                                            KEY_TIMESTAMP)!!
+                                    )
+                                    chatMessage.dateObject = documentChange.document.getDate(KEY_TIMESTAMP)!!
+                                    chatMessages.add(chatMessage)
+                                }
+                            }
+                            val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
+                            Collections.sort(chatMessages,chatComparator)
+                            if(count == 0){
+                                userChatAdpater.notifyDataSetChanged()
+                            }else{
+                                userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
+                                mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
+                            }
                         }
                     }
-                    val chatComparator = Comparator { obj1:ChatMessage,obj2:ChatMessage -> obj1.dateObject.compareTo(obj2.dateObject)}
-                    Collections.sort(chatMessages,chatComparator)
-                    if(count == 0){
-                        userChatAdpater.notifyDataSetChanged()
-                    }else{
-                        userChatAdpater.notifyItemRangeInserted(chatMessages.size,chatMessages.size)
-                        mBinding.rvUserChat.smoothScrollToPosition(chatMessages.size - 1)
-                    }
-                }
             }
+
     }
 
 }

@@ -49,6 +49,7 @@ class SignInFragment : Fragment() {
         preferenceManager.PreferenceManager(APP_ACTIVITY)
         mViewModel = ViewModelProvider(this)[SignInFragmentViewModel::class.java]
         mBinding.createAccount.setOnClickListener{
+            loading(true)
             val inputEmail = mBinding.inputEmail.text.toString()
             val inputPassword = mBinding.inputPassword.text.toString()
             val inputRepPass = mBinding.repPassInput.text.toString()
@@ -82,6 +83,16 @@ class SignInFragment : Fragment() {
 //            mViewModel.signUp(inputEmail,inputPassword,preferenceManager,inputName,inputSurname,image)
 //        }
 //    }
+
+    private fun loading(isLoading:Boolean){
+        if(isLoading){
+            mBinding.createAccount.visibility = View.INVISIBLE
+            mBinding.progressBar.visibility = View.VISIBLE
+        }else{
+            mBinding.progressBar.visibility = View.INVISIBLE
+            mBinding.createAccount.visibility = View.VISIBLE
+        }
+    }
 
     private fun isValidSignUp(email: String, pass: String, repPass: String,name:String,surname:String): Boolean {
         if (email.isNotEmpty() && pass.isNotEmpty() && name.isNotEmpty() && surname.isNotEmpty()) {

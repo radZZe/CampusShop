@@ -38,5 +38,6 @@ const val SENDER_ID = "sender_id"
 const val RECEIVER_ID = "receiver_id"
 const val KEY_MESSAGE = "message"
 const val KEY_TIMESTAMP = "timestamp"
+const val KEY_IS_CHECKED = "is_checked"
 const val SENT = 1
 const val RECEIVED = 0

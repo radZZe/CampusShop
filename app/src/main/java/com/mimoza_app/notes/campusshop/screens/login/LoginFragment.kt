@@ -40,6 +40,7 @@ class LoginFragment : Fragment() {
             APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_signInFragment)
         }
         mBinding.signInBtn.setOnClickListener{
+            loading(true)
             val inputEmail = mBinding.inputEmail.text.toString()
             val inputPassword = mBinding.inputPassword.text.toString()
             if(inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
@@ -53,6 +54,16 @@ class LoginFragment : Fragment() {
         }
         mBinding.forgotPassword.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_forgotPassword2)
+        }
+    }
+
+    private fun loading(isLoading:Boolean){
+        if(isLoading){
+            mBinding.signInBtn.visibility = View.INVISIBLE
+            mBinding.progressBar.visibility = View.VISIBLE
+        }else{
+            mBinding.progressBar.visibility = View.INVISIBLE
+            mBinding.signInBtn.visibility = View.VISIBLE
         }
     }
 }
