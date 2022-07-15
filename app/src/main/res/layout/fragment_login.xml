@@ -193,6 +193,17 @@
             app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
             android:fontFamily="@font/montserrat_alternates"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/signInBtn"
+            app:layout_constraintEnd_toEndOf="@+id/signInBtn"
+            app:layout_constraintStart_toStartOf="@+id/signInBtn"
+            app:layout_constraintTop_toTopOf="@+id/signInBtn" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

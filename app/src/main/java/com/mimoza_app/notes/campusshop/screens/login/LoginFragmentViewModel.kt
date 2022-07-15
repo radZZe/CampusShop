@@ -2,12 +2,14 @@ package com.mimoza_app.notes.campusshop.screens.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.navigation.NavOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.util.*
+
 
 class LoginFragmentViewModel(application: Application) : AndroidViewModel(application){
     private val mAuth = FirebaseAuth.getInstance()
@@ -38,6 +40,7 @@ class LoginFragmentViewModel(application: Application) : AndroidViewModel(applic
                     manager.putString(KEY_NAME,documentSnapshot.getString(KEY_NAME).toString())
                     manager.putString(KEY_SURNAME,documentSnapshot.getString(KEY_SURNAME).toString())
                     manager.putString(KEY_IMAGE,documentSnapshot.getString(KEY_IMAGE).toString())
+                    manager.putString(KEY_UID,uid)
                     APP_ACTIVITY.navController.navigate(R.id.action_loginFragment_to_mainFragment2)
                 }else{
                     showToast("Ошибка входа")
