@@ -3,7 +3,6 @@
     <string name="price_placeholder">Price:</string>
     <string name="building_placeholder">Building:</string>
     <string name="search">Search</string>
-    <string name="archive_items">Архив</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tag_line">Buy things faster</string>
     <string name="appName">Campus Shop</string>
@@ -23,8 +22,7 @@
     <string name="password_reanimation">Восстановление пороля</string>
     <string name="email_example">example@gmail.com</string>
     <string name="username_example">Данила Раздобаров</string>
-    <string name="active_items">Активные объявления</string>
-    <string name="exit">Выйти</string>
+    <string name="sign_out">Sign out</string>
     <string name="shop_item_card_title">Заголовок карточки товара</string>
     <string name="category">Category</string>
     <string name="add_item_name">Add name for your item</string>
@@ -45,6 +43,9 @@
     <string name="edit_profile">Edit profile</string>
     <string name="map">Map</string>
     <string name="active_ads">Active Ads</string>
+    <string name="archive_ads">Archive ads</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="enter_new_building">Enter new building</string>
 
     <string-array name="categories">
         <item>Food</item>
@@ -52,6 +53,7 @@
         <item>Clothes</item>
         <item>Smoking</item>
         <item>Things</item>
+        <item>Homework</item>
     </string-array>
 
 </resources>

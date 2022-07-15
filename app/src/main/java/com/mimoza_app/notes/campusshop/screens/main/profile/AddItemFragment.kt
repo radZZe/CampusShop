@@ -70,6 +70,10 @@ class AddItemFragment : Fragment() {
             APP_ACTIVITY.navController.navigate(R.id.action_addItemInShopFragment_to_profileFragment)
         }
 
+        mBinding.btnBack.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_addItemInShopFragment_to_profileFragment)
+        }
+
     }
 
 

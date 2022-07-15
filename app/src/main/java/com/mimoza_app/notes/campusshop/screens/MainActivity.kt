@@ -1,6 +1,8 @@
 package com.mimoza_app.notes.campusshop.screens
 
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mimoza_app.notes.campusshop.R
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() { //jopa
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         APP_ACTIVITY = this
-        navController = Navigation.findNavController(this,R.id.nav_host)
+        navController = Navigation.findNavController(this, R.id.nav_host)
 
         val database = Firebase.database
         val myRef = database.getReference("message")
@@ -51,7 +54,8 @@ class MainActivity : AppCompatActivity() { //jopa
         val fragment_active_ads = navController.findDestination(R.id.activeAdsFragment)
         val fragment_archive_ads = navController.findDestination(R.id.archiveAdsFragment)
 
-        navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener {
+        navController.addOnDestinationChangedListener(object :
+            NavController.OnDestinationChangedListener {
             override fun onDestinationChanged(
                 controller: NavController,
                 destination: NavDestination, @Nullable arguments: Bundle?
@@ -68,34 +72,34 @@ class MainActivity : AppCompatActivity() { //jopa
                 )
             }
         })
-
     }
 
-     fun nav_changed_listener(
-         login: NavDestination?,
-         forgot_pass: NavDestination?,
-         signUp: NavDestination?,
-         add: NavDestination?,
-         edit: NavDestination?,
-         chat: NavDestination?,
-         active: NavDestination?,
-         archive: NavDestination?
-     ) {
-         val currentFragment = navController.currentDestination
-         if (currentFragment != null) {
-             if(currentFragment == login ||
-                 currentFragment == forgot_pass ||
-                 currentFragment == signUp ||
-                 currentFragment == add ||
-                 currentFragment == edit ||
-                 currentFragment == chat ||
-                 currentFragment == active ||
-                 currentFragment == archive)  {
-                     mBinding.bottomNavMenu.visibility = View.GONE
-             }else{
-                 mBinding.bottomNavMenu.visibility = View.VISIBLE
-             }
-         }
-     }
+    fun nav_changed_listener(
+        login: NavDestination?,
+        forgot_pass: NavDestination?,
+        signUp: NavDestination?,
+        add: NavDestination?,
+        edit: NavDestination?,
+        chat: NavDestination?,
+        active: NavDestination?,
+        archive: NavDestination?
+    ) {
+        val currentFragment = navController.currentDestination
+        if (currentFragment != null) {
+            if (currentFragment == login ||
+                currentFragment == forgot_pass ||
+                currentFragment == signUp ||
+                currentFragment == add ||
+                currentFragment == edit ||
+                currentFragment == chat ||
+                currentFragment == active ||
+                currentFragment == archive
+            ) {
+                mBinding.bottomNavMenu.visibility = View.GONE
+            } else {
+                mBinding.bottomNavMenu.visibility = View.VISIBLE
+            }
+        }
+    }
 
 }

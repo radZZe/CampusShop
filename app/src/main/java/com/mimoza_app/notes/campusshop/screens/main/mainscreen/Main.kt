@@ -1,14 +1,15 @@
 package com.mimoza_app.notes.campusshop.screens.main
 
+import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.google.firebase.firestore.*
@@ -17,7 +18,6 @@ import com.mimoza_app.notes.campusshop.models.ShopItem
 import com.mimoza_app.notes.campusshop.screens.main.mainscreen.MainListAdapter
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
 import com.mimoza_app.notes.campusshop.util.KEY_COLLECTION_ITEMS
-import com.mimoza_app.notes.campusshop.util.showToast
 
 
 class main : Fragment() {
@@ -43,7 +43,6 @@ class main : Fragment() {
         with (rvShopList) {
             recycledViewPool.setMaxRecycledViews(MainListAdapter.VIEW_TYPE, MainListAdapter.MAX_POOL_SIZE)
             layoutManager = GridLayoutManager(APP_ACTIVITY, 2)
-            // layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
         }
 
@@ -52,6 +51,19 @@ class main : Fragment() {
         rvShopList.adapter = adapter
 
         getData()
+
+        mBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter?.getFilter()?.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.getFilter()?.filter(newText);
+                return true
+            }
+
+        })
     }
 
     private fun getData() {
@@ -71,7 +83,6 @@ class main : Fragment() {
                                 itemsArrayList.add(dc.document.toObject(ShopItem::class.java))
                             }
                         }
-
                         adapter.notifyDataSetChanged()
                     }
                 }

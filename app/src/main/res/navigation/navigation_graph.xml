@@ -45,7 +45,11 @@
         tools:layout="@layout/fragment_chats" >
         <action
             android:id="@+id/action_chatsFragment_to_userChat"
-            app:destination="@id/userChat" />
+            app:destination="@id/userChat"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -54,19 +58,35 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_addItemInShopFragment"
-            app:destination="@id/addItemInShopFragment" />
+            app:destination="@id/addItemInShopFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_profileFragment_to_activeAdsFragment"
-            app:destination="@id/activeAdsFragment" />
+            app:destination="@id/activeAdsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
         <action
             android:id="@+id/action_profileFragment_to_archiveAdsFragment"
-            app:destination="@id/archiveAdsFragment" />
+            app:destination="@id/archiveAdsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
     </fragment>
     <fragment
         android:id="@+id/forgotPassword2"
@@ -84,7 +104,11 @@
         tools:layout="@layout/fragment_add_item" >
         <action
             android:id="@+id/action_addItemInShopFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -92,7 +116,11 @@
         android:label="EditProfileFragment" >
         <action
             android:id="@+id/action_editProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/userChat"
@@ -101,15 +129,35 @@
         tools:layout="@layout/fragment_user_chat" >
         <action
             android:id="@+id/action_userChat_to_chatsFragment"
-            app:destination="@id/chatsFragment" />
+            app:destination="@id/chatsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/archiveAdsFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ArchiveAdsFragment"
-        android:label="ArchiveAdsFragment" />
+        android:label="ArchiveAdsFragment" >
+        <action
+            android:id="@+id/action_archiveAdsFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
     <fragment
         android:id="@+id/activeAdsFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.profile.ActiveAdsFragment"
         android:label="fragment_archive_ads"
-        tools:layout="@layout/fragment_archive_ads" />
+        tools:layout="@layout/fragment_archive_ads" >
+        <action
+            android:id="@+id/action_activeAdsFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
 </navigation>
