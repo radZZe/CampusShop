@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-<<<<<<< HEAD
             <ImageView
                 android:id="@+id/backpressed"
                 android:layout_width="wrap_content"
@@ -42,9 +41,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-=======
->>>>>>> 59a1ffc02ba1b8d32c6eff8a51836744500206d7
-            <TextView
+<TextView
                 android:id="@+id/selected_user_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

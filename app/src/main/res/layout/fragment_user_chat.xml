@@ -86,13 +86,10 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView14"
-<<<<<<< HEAD
             app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toEndOf="@+id/imageView13"
-=======
-            app:layout_constraintStart_toEndOf="@+id/backButton"
->>>>>>> 59a1ffc02ba1b8d32c6eff8a51836744500206d7
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/backButton">
+
 
             <FrameLayout
                 android:id="@+id/card_view"

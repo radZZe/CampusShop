@@ -22,7 +22,7 @@ import com.mimoza_app.notes.campusshop.databinding.ActivityMainBinding
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
 
 
-class MainActivity : AppCompatActivity() { //jopa
+class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
     private var _binding: ActivityMainBinding? = null
