@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() { //jopa
         APP_ACTIVITY = this
         navController = Navigation.findNavController(this, R.id.nav_host)
 
+
         val database = Firebase.database
         val myRef = database.getReference("message")
 

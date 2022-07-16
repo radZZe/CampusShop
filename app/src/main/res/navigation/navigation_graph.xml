@@ -18,7 +18,9 @@
             app:destination="@id/forgotPassword2" />
         <action
             android:id="@+id/action_loginFragment_to_mainFragment2"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo='@id/navigation_graph'
+            app:popUpToInclusive="true"/>
 
     </fragment>
     <fragment
@@ -31,7 +33,9 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_signInFragment_to_main"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo='@id/navigation_graph'
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/mainFragment"

@@ -38,6 +38,7 @@ class SignInFragmentViewModel(application: Application) : AndroidViewModel(appli
                 manager.putString(KEY_NAME,name)
                 manager.putString(KEY_SURNAME,surname)
                 manager.putString(KEY_IMAGE,image)
+                manager.putString(KEY_UID,uid)
                 APP_ACTIVITY.navController.navigate(R.id.action_signInFragment_to_main)
             }
             .addOnFailureListener {
