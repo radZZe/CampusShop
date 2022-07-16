@@ -86,7 +86,12 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView14"
+<<<<<<< HEAD
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toEndOf="@+id/imageView13"
+=======
             app:layout_constraintStart_toEndOf="@+id/backButton"
+>>>>>>> 59a1ffc02ba1b8d32c6eff8a51836744500206d7
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
@@ -132,7 +137,7 @@
             android:id="@+id/backButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
