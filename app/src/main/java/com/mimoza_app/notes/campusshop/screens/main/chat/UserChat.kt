@@ -1,23 +1,28 @@
 package com.mimoza_app.notes.campusshop.screens.main.chat
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.text.capitalize
-import com.google.firebase.firestore.*
-import com.google.firebase.firestore.EventListener
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FirebaseFirestore
 import com.mimoza_app.notes.campusshop.R
-import com.mimoza_app.notes.campusshop.databinding.FragmentChatsBinding
 import com.mimoza_app.notes.campusshop.databinding.FragmentUserChatBinding
 import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.util.*
+import java.io.FileNotFoundException
+import java.io.InputStream
 import java.util.*
 
 
@@ -81,6 +86,14 @@ class UserChat : Fragment() {
         }
         mBinding.backButton.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_userChat_to_chatsFragment)
+        }
+        mBinding.attachBtn.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type ="*/*"
+            pickFiles.launch(intent);
+//            val intent = Intent(Intent.ACTION_PICK, )
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//            pickImage.launch(intent)
         }
 
     }
@@ -176,6 +189,16 @@ class UserChat : Fragment() {
                     }
             }
 
+    }
+
+    val pickFiles: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode == Activity.RESULT_OK){
+            if(it.data != null){
+                it.data!!.data
+            }
+        }
     }
 
 }

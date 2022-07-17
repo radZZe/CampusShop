@@ -72,17 +72,7 @@ class SignInFragment : Fragment() {
 
     }
 
-//    private fun signUp() {
-//        val inputEmail = mBinding.inputEmail.text.toString()
-//        val inputPassword = mBinding.inputPassword.text.toString()
-//        val inputRepPass = mBinding.repPassInput.text.toString()
-//        val inputName = mBinding.inputName.text.toString()
-//        val inputSurname = mBinding.inputSurname.text.toString()
-//        val image = encodedImage
-//        if(isValidSignUp(inputEmail,inputPassword,inputRepPass,inputName,inputSurname)){
-//            mViewModel.signUp(inputEmail,inputPassword,preferenceManager,inputName,inputSurname,image)
-//        }
-//    }
+
 
     private fun loading(isLoading:Boolean){
         if(isLoading){

@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.6'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.2.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     def fragment_version = "1.4.1"
     def nav_version = "2.4.2"
     def groupie_version = "1.0.0"
