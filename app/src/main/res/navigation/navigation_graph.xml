@@ -41,7 +41,15 @@
         android:id="@+id/mainFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_shopItemFragment"
+            app:destination="@id/shopItemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
+    </fragment>
     <fragment
         android:id="@+id/chatsFragment"
         android:name="com.mimoza_app.notes.campusshop.screens.main.chat.ChatsFragment"
@@ -134,10 +142,10 @@
         <action
             android:id="@+id/action_userChat_to_chatsFragment"
             app:destination="@id/chatsFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_rigth"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left" />
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_rigth" />
     </fragment>
     <fragment
         android:id="@+id/archiveAdsFragment"
@@ -159,6 +167,19 @@
         <action
             android:id="@+id/action_activeAdsFragment_to_profileFragment"
             app:destination="@id/profileFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_rigth"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopItemFragment"
+        android:name="com.mimoza_app.notes.campusshop.screens.main.mainscreen.ShopItemFragment"
+        android:label="fragment_shop_item"
+        tools:layout="@layout/fragment_shop_item" >
+        <action
+            android:id="@+id/action_shopItemFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_rigth"
             app:popEnterAnim="@anim/from_right"

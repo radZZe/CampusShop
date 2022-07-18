@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.ShopItem
+import com.mimoza_app.notes.campusshop.models.User
+import com.mimoza_app.notes.campusshop.screens.main.chat.ChatListener
 import com.mimoza_app.notes.campusshop.screens.main.chat.UserChatAdapter
+import com.mimoza_app.notes.campusshop.util.PreferenceManager
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainListAdapter(val shopItemList: ArrayList<ShopItem>):  RecyclerView.Adapter<MainListAdapter.MainListViewHolder>() {
+class MainListAdapter(val shopItemList: ArrayList<ShopItem>, private val onShopItemClickListener: ShopItemListener):  RecyclerView.Adapter<MainListAdapter.MainListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListViewHolder {
         val layout = R.layout.shop_item_card
@@ -27,11 +30,16 @@ class MainListAdapter(val shopItemList: ArrayList<ShopItem>):  RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: MainListViewHolder, position: Int) {
+
         val shopItem = shopItemList[position]
         holder.tvTitle.text = shopItem.name.capitalize()
         holder.tvPrice.text = shopItem.price
         holder.tvBuilding.text = shopItem.building
         holder.ivPicture.setImageBitmap(getItemImage(shopItem.picture))
+        holder.view.setOnClickListener {
+            onShopItemClickListener.onShopItemClicked(shopItem)
+        }
+
     }
 
     override fun getItemCount(): Int {

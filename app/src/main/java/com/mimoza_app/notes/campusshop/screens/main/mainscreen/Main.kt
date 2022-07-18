@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,15 +16,17 @@ import com.google.firebase.database.*
 import com.google.firebase.firestore.*
 import com.mimoza_app.notes.campusshop.databinding.FragmentMainBinding
 import com.mimoza_app.notes.campusshop.models.ShopItem
+import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.screens.main.mainscreen.MainListAdapter
-import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
-import com.mimoza_app.notes.campusshop.util.KEY_COLLECTION_ITEMS
+import com.mimoza_app.notes.campusshop.screens.main.mainscreen.ShopItemListener
+import com.mimoza_app.notes.campusshop.util.*
 
 
 class main : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val mBinding get() = _binding!!
+
     private lateinit var rvShopList: RecyclerView
     private lateinit var database: FirebaseFirestore
     private lateinit var adapter: MainListAdapter
@@ -47,7 +50,13 @@ class main : Fragment() {
         }
 
         itemsArrayList = arrayListOf()
-        adapter = MainListAdapter(itemsArrayList)
+        adapter = MainListAdapter(itemsArrayList, object: ShopItemListener{
+            override fun onShopItemClicked(shopItem: ShopItem) {
+                val bundle = Bundle()
+                bundle.putSerializable(KEY_ITEM, shopItem)
+                APP_ACTIVITY.navController.navigate(com.mimoza_app.notes.campusshop.R.id.action_mainFragment_to_shopItemFragment,bundle)
+            }
+        })
         rvShopList.adapter = adapter
 
         getData()
@@ -88,5 +97,11 @@ class main : Fragment() {
                 }
             })
     }
+
+//    override fun onShopItemClicked (shopItem: ShopItem) {
+//        val bundle = Bundle()
+//        bundle.putSerializable(KEY_ITEM, shopItem)
+//        APP_ACTIVITY.navController.navigate(com.mimoza_app.notes.campusshop.R.id.action_mainFragment_to_shopItemFragment,bundle)
+//    }
 
 }
