@@ -46,6 +46,8 @@
     <string name="archive_ads">Archive ads</string>
     <string name="repeat_password">Repeat password</string>
     <string name="enter_new_building">Enter new building</string>
+    <string name="text_to_seller">Text to seller</string>
+    <string name="category_placeholder">Category:</string>
 
     <string-array name="categories">
         <item>Food</item>

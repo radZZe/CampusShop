@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         val fragmet_user_chat = navController.findDestination(R.id.userChat)
         val fragment_active_ads = navController.findDestination(R.id.activeAdsFragment)
         val fragment_archive_ads = navController.findDestination(R.id.archiveAdsFragment)
+        val fragment_shop_item = navController.findDestination(R.id.shopItemFragment)
 
         navController.addOnDestinationChangedListener(object :
             NavController.OnDestinationChangedListener {
@@ -69,7 +70,8 @@ class MainActivity : AppCompatActivity() {
                     fragment_edit_profile,
                     fragmet_user_chat,
                     fragment_active_ads,
-                    fragment_archive_ads
+                    fragment_archive_ads,
+                    fragment_shop_item
                 )
             }
         })
@@ -83,7 +85,8 @@ class MainActivity : AppCompatActivity() {
         edit: NavDestination?,
         chat: NavDestination?,
         active: NavDestination?,
-        archive: NavDestination?
+        archive: NavDestination?,
+        shopItem: NavDestination?
     ) {
         val currentFragment = navController.currentDestination
         if (currentFragment != null) {
@@ -94,7 +97,8 @@ class MainActivity : AppCompatActivity() {
                 currentFragment == edit ||
                 currentFragment == chat ||
                 currentFragment == active ||
-                currentFragment == archive
+                currentFragment == archive ||
+                currentFragment == shopItem
             ) {
                 mBinding.bottomNavMenu.visibility = View.GONE
             } else {

@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.text.capitalize
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mimoza_app.notes.campusshop.R
@@ -110,11 +111,11 @@ class AddItemFragment : Fragment() {
     }
 
     private fun addItem() {
-        val name = mBinding.etSetName.text.toString()
+        val name = mBinding.etSetName.text.toString().capitalize()
         val price = mBinding.etSetPrice.text.toString()
-        val description = mBinding.etSetDescription.text.toString()
+        val description = mBinding.etSetDescription.text.toString().capitalize()
         val building = mBinding.etSetBuilding.text.toString()
-        val category = mBinding.tvCategory.text.toString()
+        val category = mBinding.tvCategory.text.toString().capitalize()
         val image = encodedImage
         mViewModel.addItem(name, price, description, building, category, image, "jopa")
     }
