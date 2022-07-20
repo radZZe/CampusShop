@@ -8,5 +8,6 @@ data class ChatMessage(
     var message:String ="",
     var dateTime:String = "",
     var dateObject: Date = Date(),
-    var isChecked:Boolean = false
+    var isChecked:Boolean = false,
+    var type:String = ""
 )

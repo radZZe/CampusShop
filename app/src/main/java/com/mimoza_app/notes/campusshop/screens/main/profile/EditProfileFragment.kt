@@ -113,7 +113,6 @@ class EditProfileFragment : Fragment() {
         mBinding.etMail.setText(preferenceManager.getString(KEY_EMAIL))
         mBinding.etName.setText(preferenceManager.getString(KEY_NAME)?.capitalize())
         mBinding.etSurname.setText(preferenceManager.getString(KEY_SURNAME)?.capitalize())
-        mBinding.etBuilding.setText(preferenceManager.getString(KEY_BUILDING)?.capitalize())
         val bytes = Base64.decode(preferenceManager.getString(KEY_IMAGE), Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
         mBinding.imgAddImage.setImageBitmap(bitmap)
