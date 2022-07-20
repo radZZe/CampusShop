@@ -95,7 +95,7 @@ class ProfileFragment : Fragment() {
             )
         }
         val updates = hashMapOf<String,Any>()
-        updates.put(KEY_FCM_TOKEN,FieldValue.delete())
+        updates.put(KEY_FCM_TOKEN, FieldValue.delete())
         documentReference?.update(updates)
             ?.addOnSuccessListener {
                 preferenceManager.clear()

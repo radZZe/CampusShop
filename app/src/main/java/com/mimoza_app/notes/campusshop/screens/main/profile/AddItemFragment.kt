@@ -18,6 +18,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.text.capitalize
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.database.firebase.AppFirebaseRepository
 import com.mimoza_app.notes.campusshop.databinding.FragmentAddItemBinding
@@ -40,8 +42,7 @@ class AddItemFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val categories = resources.getStringArray(R.array.categories)
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.categories_dropdown_item, categories)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.categories_dropdown_item, categories)
         mBinding.tvCategory.setAdapter(arrayAdapter)
         captureImage = mBinding.imgAddImage
         initialization()
@@ -83,7 +84,7 @@ class AddItemFragment : Fragment() {
         val previewHeight = bitmap.height * previewWidth / bitmap.width
         val previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false)
         val byteArrayOutputStream = ByteArrayOutputStream()
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
         val bytes = byteArrayOutputStream.toByteArray()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
@@ -117,6 +118,7 @@ class AddItemFragment : Fragment() {
         val building = mBinding.etSetBuilding.text.toString()
         val category = mBinding.tvCategory.text.toString().capitalize()
         val image = encodedImage
-        mViewModel.addItem(name, price, description, building, category, image, "jopa")
+        val id = Firebase.auth.currentUser?.uid.toString()
+        mViewModel.addItem(name, price, description, building, category, image, id)
     }
 }
