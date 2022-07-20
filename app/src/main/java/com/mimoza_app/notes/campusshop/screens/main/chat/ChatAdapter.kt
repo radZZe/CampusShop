@@ -3,22 +3,17 @@ package com.mimoza_app.notes.campusshop.screens.main.chat
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.compose.ui.text.capitalize
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mimoza_app.notes.campusshop.R
-import com.mimoza_app.notes.campusshop.databinding.FragmentChatsBinding
 import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.util.*
-import java.sql.Time
 
 class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatHolder> {
 
@@ -65,7 +60,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ChatHolder> {
 
         var count = 0
         var user = users.get(position)
-        val database = FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS).document(user.id).collection(KEY_COLLECTION_CHAT).get()
+        val database = FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS).document(user.uid).collection(KEY_COLLECTION_CHAT).get()
         database.addOnCompleteListener {
             if ( it.isSuccessful && (it.getResult() != null) &&  (it.getResult().documents.size > 0)) {
                 it.getResult().documents.forEach{

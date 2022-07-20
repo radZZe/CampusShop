@@ -184,5 +184,8 @@
             app:exitAnim="@anim/to_rigth"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_shopItemFragment_to_userChat"
+            app:destination="@id/userChat" />
     </fragment>
 </navigation>

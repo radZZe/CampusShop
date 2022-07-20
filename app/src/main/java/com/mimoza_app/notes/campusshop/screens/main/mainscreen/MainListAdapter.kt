@@ -9,15 +9,9 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mimoza_app.notes.campusshop.R
-import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.ShopItem
-import com.mimoza_app.notes.campusshop.models.User
-import com.mimoza_app.notes.campusshop.screens.main.chat.ChatListener
-import com.mimoza_app.notes.campusshop.screens.main.chat.UserChatAdapter
-import com.mimoza_app.notes.campusshop.util.PreferenceManager
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,7 +29,7 @@ class MainListAdapter(val shopItemList: ArrayList<ShopItem>, private val onShopI
         holder.tvTitle.text = shopItem.name.capitalize()
         holder.tvPrice.text = shopItem.price
         holder.tvBuilding.text = shopItem.building
-        holder.ivPicture.setImageBitmap(getItemImage(shopItem.picture))
+        holder.ivPicture.setImageBitmap(getItemImage(shopItem.image))
         holder.view.setOnClickListener {
             onShopItemClickListener.onShopItemClicked(shopItem)
         }
@@ -44,6 +38,13 @@ class MainListAdapter(val shopItemList: ArrayList<ShopItem>, private val onShopI
 
     override fun getItemCount(): Int {
         return shopItemList.size
+    }
+
+    class MainListViewHolder (val view: View): RecyclerView.ViewHolder(view){
+        val tvTitle = view.findViewById<TextView>(R.id.card_title)
+        val tvBuilding = view.findViewById<TextView>(R.id.card_building)
+        val tvPrice = view.findViewById<TextView>(R.id.cardPriceValue)
+        val ivPicture = view.findViewById<ImageView>(R.id.cardPhoto)
     }
 
     private fun getItemImage(encodedImage:String): Bitmap {
@@ -84,13 +85,6 @@ class MainListAdapter(val shopItemList: ArrayList<ShopItem>, private val onShopI
         override fun convertResultToString(resultValue: Any?): CharSequence {
             return super.convertResultToString(resultValue)
         }
-    }
-
-    class MainListViewHolder (val view: View): RecyclerView.ViewHolder(view){
-        val tvTitle = view.findViewById<TextView>(R.id.card_title)
-        val tvBuilding = view.findViewById<TextView>(R.id.card_building)
-        val tvPrice = view.findViewById<TextView>(R.id.cardPriceValue)
-        val ivPicture = view.findViewById<ImageView>(R.id.cardPhoto)
     }
 
     companion object {

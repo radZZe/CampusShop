@@ -40,13 +40,12 @@ class MainActivity : AppCompatActivity() {
         TooLargeTool.startLogging(Application());
         initStorage()
 
-
         val database = Firebase.database
         val myRef = database.getReference("message")
 
         myRef.setValue("Hello, World!")
 
-        mBinding.bottomNavMenu.setupWithNavController(navController) // Setup menu navigation
+        mBinding.bottomNavMenu.setupWithNavController(navController) // Setup navigation  menu
 
         val navView: BottomNavigationView = mBinding.bottomNavMenu
         NavigationUI.setupWithNavController(navView, navController)
