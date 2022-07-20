@@ -148,4 +148,63 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+<<<<<<< HEAD
+    private fun initialization() {
+        preferenceManager = PreferenceManager()
+        preferenceManager.PreferenceManager(APP_ACTIVITY)
+
+        mViewModel = ViewModelProvider(this)[EditProfileFragmentViewModel::class.java]
+
+        mBinding.imgAddImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            pickImage.launch(intent)
+        }
+
+        mBinding.btnCompleteEdditing.setOnClickListener {
+            // edit()
+            APP_ACTIVITY.navController.navigate(R.id.action_editProfileFragment_to_profileFragment)
+        }
+
+        mBinding.btnBack.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_editProfileFragment_to_profileFragment)
+        }
+    }
+
+    private fun loadUserDetails() {
+        mBinding.etMail.setText(preferenceManager.getString(KEY_EMAIL))
+        mBinding.etName.setText(preferenceManager.getString(KEY_NAME)?.capitalize())
+        mBinding.etSurname.setText(preferenceManager.getString(KEY_SURNAME)?.capitalize())
+        val bytes = Base64.decode(preferenceManager.getString(KEY_IMAGE), Base64.DEFAULT)
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        mBinding.imgAddImage.setImageBitmap(bitmap)
+    }
+
+//    private fun edit() {
+//        val inputName = mBinding.etName.text.toString()
+//        val inputSurname = mBinding.etSurname.text.toString()
+//
+//        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+//
+//        val mapUpdate = mapOf(
+//            KEY_NAME to inputName,
+//            KEY_SURNAME to inputSurname,
+//        )
+//
+//        database.collection(KEY_COLLECTION_CHAT).document(userId).update(
+//            "message", "zalupa"
+//        )
+//            .addOnSuccessListener {
+//                showToast("Success")
+//            }
+//            .addOnFailureListener {
+//                showToast("Failed")
+//            }
+//
+//    }
+
+
+}
+=======
  }
+>>>>>>> 51b399e43a1aefc030809119b41109496b8fb2e1

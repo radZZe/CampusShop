@@ -1,6 +1,7 @@
 package com.mimoza_app.notes.campusshop.screens
 
 
+import android.app.Application
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -17,9 +18,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.gu.toolargetool.TooLargeTool
 import com.mimoza_app.notes.campusshop.R
 import com.mimoza_app.notes.campusshop.databinding.ActivityMainBinding
 import com.mimoza_app.notes.campusshop.util.APP_ACTIVITY
+import com.mimoza_app.notes.campusshop.util.initStorage
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         navController = Navigation.findNavController(this, R.id.nav_host)
+        TooLargeTool.startLogging(Application());
+        initStorage()
 
         val database = Firebase.database
         val myRef = database.getReference("message")
