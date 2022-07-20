@@ -30,13 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 51b399e43a1aefc030809119b41109496b8fb2e1
 <TextView
                 android:id="@+id/selected_user_field"
                 android:layout_width="wrap_content"

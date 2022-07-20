@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -25,12 +26,7 @@ import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.screens.CropperAcrtivity
 import com.mimoza_app.notes.campusshop.util.*
-<<<<<<< HEAD
 import java.io.ByteArrayOutputStream
-import java.io.FileNotFoundException
-import java.io.InputStream
-=======
->>>>>>> 51b399e43a1aefc030809119b41109496b8fb2e1
 import java.util.*
 
 
@@ -87,11 +83,11 @@ class UserChat : Fragment(),UserChatListener {
             }
         mBinding.typeMessageField.setText(null)
     }
-    private fun sendMessageAsImage(image:Uri){
+    private fun sendMessageAsImage(image: Uri){
         val message = hashMapOf<String,Any>()
         message.put(KEY_IS_CHECKED,false)
         message.put(SENDER_ID, preferenceManager.getString(KEY_USER_ID)!!)
-        message.put(RECEIVER_ID,receiverUser.id)
+        message.put(RECEIVER_ID,receiverUser.uid)
         message.put(KEY_MESSAGE,image)
         message.put(KEY_TIMESTAMP,Date())
         message.put(KEY_TYPE_MESSAGE, MESSAGE_TYPE_IMAGE)
@@ -110,7 +106,7 @@ class UserChat : Fragment(),UserChatListener {
         chatMessages = arrayListOf<ChatMessage>()
         senderId = preferenceManager.getString(KEY_USER_ID)!!
         receiverUser = arguments?.get(KEY_USER) as User
-        userChatAdpater = UserChatAdapter(chatMessages,senderId,receiverUser.image,)
+        userChatAdpater = UserChatAdapter(chatMessages,senderId,receiverUser.image,this)
         database = FirebaseFirestore.getInstance()
         listenMessage()
         val bytes = Base64.decode(receiverUser.image,Base64.DEFAULT)
