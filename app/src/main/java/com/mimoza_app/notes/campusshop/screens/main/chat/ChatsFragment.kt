@@ -58,9 +58,9 @@ class ChatsFragment : Fragment(),ChatListener {
                         user.name = queryDocumentSnapshot.getString(KEY_NAME).toString()
                         user.email = queryDocumentSnapshot.getString(KEY_EMAIL).toString()
                         user.image = queryDocumentSnapshot.getString(KEY_IMAGE).toString()
-                        user.token = queryDocumentSnapshot.getString(KEY_FCM_TOKEN).toString()
+                        user.fcmToken = queryDocumentSnapshot.getString(KEY_FCM_TOKEN).toString()
                         user.surname = queryDocumentSnapshot.getString(KEY_SURNAME).toString()
-                        user.id = queryDocumentSnapshot.id
+                        user.uid = queryDocumentSnapshot.id
                         users.add(user)
                     }
                     if(users.size > 0){

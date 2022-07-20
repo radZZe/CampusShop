@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.icu.text.SimpleDateFormat
-import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.view.LayoutInflater
@@ -21,8 +20,6 @@ import com.mimoza_app.notes.campusshop.databinding.FragmentUserChatBinding
 import com.mimoza_app.notes.campusshop.models.ChatMessage
 import com.mimoza_app.notes.campusshop.models.User
 import com.mimoza_app.notes.campusshop.util.*
-import java.io.FileNotFoundException
-import java.io.InputStream
 import java.util.*
 
 
@@ -56,7 +53,7 @@ class UserChat : Fragment() {
         val message = hashMapOf<String,Any>()
         message.put(KEY_IS_CHECKED,false)
         message.put(SENDER_ID, preferenceManager.getString(KEY_USER_ID)!!)
-        message.put(RECEIVER_ID,receiverUser.id)
+        message.put(RECEIVER_ID,receiverUser.uid)
         message.put(KEY_MESSAGE,mBinding.typeMessageField.text.toString())
         message.put(KEY_TIMESTAMP,Date())
         database.collection(KEY_COLLECTION_USERS)
@@ -76,7 +73,7 @@ class UserChat : Fragment() {
         userChatAdpater = UserChatAdapter(chatMessages,senderId,receiverUser.image)
         database = FirebaseFirestore.getInstance()
         listenMessage()
-        val bytes =Base64.decode(receiverUser.image,Base64.DEFAULT)
+        val bytes = Base64.decode(receiverUser.image,Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
         mBinding.rvUserChat.adapter = userChatAdpater
         mBinding.userAvatar.setImageBitmap(bitmap)
@@ -114,7 +111,7 @@ class UserChat : Fragment() {
             .get().addOnCompleteListener {
                 it.getResult().documents.get(0).reference.collection(KEY_COLLECTION_CHAT)
                     .whereEqualTo(SENDER_ID,preferenceManager.getString(KEY_USER_ID).toString())
-                    .whereEqualTo(RECEIVER_ID,receiverUser.id)
+                    .whereEqualTo(RECEIVER_ID,receiverUser.uid)
                     .addSnapshotListener{ value, error ->
                         if(error != null){
                             return@addSnapshotListener
@@ -148,11 +145,11 @@ class UserChat : Fragment() {
                     }
             }
         database.collection(KEY_COLLECTION_USERS)
-            .document(receiverUser.id)
+            .document(receiverUser.uid)
             .get()
             .addOnCompleteListener {
                 it.getResult().reference.collection(KEY_COLLECTION_CHAT)
-                    .whereEqualTo(SENDER_ID,receiverUser.id)
+                    .whereEqualTo(SENDER_ID,receiverUser.uid)
                     .whereEqualTo(RECEIVER_ID,preferenceManager.getString(KEY_USER_ID).toString())
                     .addSnapshotListener{ value, error ->
                         if(error != null){

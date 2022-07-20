@@ -58,22 +58,7 @@
         app:layout_constraintStart_toStartOf="@+id/et_name"
         app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
-    <EditText
-        android:id="@+id/et_mail"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/enter_new_email_address"
-        android:inputType="textEmailAddress"
-        android:lines="8"
-        android:textColorHint="@color/grey"
-        app:layout_constraintEnd_toEndOf="@+id/et_surname"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/et_surname"
-        app:layout_constraintTop_toBottomOf="@+id/et_surname" />
-
-<!--    <EditText-->
+    <!--    <EditText-->
 <!--        android:id="@+id/et_building"-->
 <!--        android:layout_width="0dp"-->
 <!--        android:layout_height="50dp"-->
@@ -112,7 +97,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_complete_edditing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_mail">
+        app:layout_constraintTop_toBottomOf="@+id/et_surname"
+        app:layout_constraintVertical_bias="0.19999999">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

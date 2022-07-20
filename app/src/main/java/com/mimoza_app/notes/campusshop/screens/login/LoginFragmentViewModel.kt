@@ -1,6 +1,7 @@
 package com.mimoza_app.notes.campusshop.screens.login
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.lifecycle.AndroidViewModel
 import androidx.navigation.NavOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -24,13 +25,15 @@ class LoginFragmentViewModel(application: Application) : AndroidViewModel(applic
         })
     }
 
-    fun login(email:String,pass:String,manager:PreferenceManager){
+    fun login(email:String, pass:String, manager:PreferenceManager){
         val uid = mAuth.currentUser!!.uid
+
         val database = FirebaseFirestore.getInstance()
         database.collection(KEY_COLLECTION_USERS)
             .whereEqualTo(KEY_UID,uid)
             .get()
             .addOnCompleteListener {
+
                 if(it.isSuccessful && it.getResult() != null
                     && it.getResult().documents.size > 0){
                     val documentSnapshot:DocumentSnapshot = it.getResult().documents.get(0)

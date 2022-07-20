@@ -25,7 +25,7 @@ class AddItemFragmentViewModel(application: Application) : AndroidViewModel(appl
         building: String,
         category: String,
         picture: String,
-        idFirebase: String,
+        uid: String,
 
         ) {
         val database = FirebaseFirestore.getInstance()
@@ -38,7 +38,7 @@ class AddItemFragmentViewModel(application: Application) : AndroidViewModel(appl
         shopItem[KEY_CATEGORY] = category
         shopItem[KEY_IMAGE] = picture
         //shopItem[KEY_USER_ID] = currentUser
-        shopItem[KEY_FIREBASE_ID] = idFirebase
+        shopItem[KEY_UID] = uid
         database.collection(KEY_COLLECTION_ITEMS)
             .add(shopItem)
             .addOnSuccessListener {
